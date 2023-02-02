@@ -11,7 +11,7 @@
     <!--Fonts Awesome CDN-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <style>
-            *{
+        *{
             box-sizing: border-box;
         }
         h6{
@@ -35,33 +35,31 @@
         
         input{
             display: inline;
-            width: 250px;
-            height: 45px;
+            width: 275px;
+            height: 50px;
             border-radius: 25px;
             text-align: left;
-            padding: 15px;
+            padding: 18px;
             background: #ebecf0;
             border: none;
             margin-inline: 10px;
         }
-        .icon{
-            margin-left: -35px;
-        }
+        
         .new-icons{
             width: 40px;
-            height: 40px;
+            height: 20px;
             color: #3d3d3d;
         }
         #pro{
-            width: 50px;
-            height: 50px;
-            border: 1px solid black;
+            width: 60px;
+            height: 60px;
             border-radius: 30px;
+            border: none;
         }
         #logo{
-            width: 150px;
-            align-items: right;
-            margin-top: -30px;
+            width: 100px;
+            align-items: center;
+            margin-top: -5px;
         }
         /* navbar */
         nav{
@@ -90,52 +88,83 @@
             margin-inline: 15px;
         }
         
-        /* Change the link color to #111 (black) on hover */
+        /* Change the link color on hover */
         li a:hover {
             color: #1690a7;
             border-bottom: 3px solid #1690a7;
         }
         h4{
-            color: #1690a7;
+            color: #000;
         }
         #addicon{
             background-color: #1690a7;
             border-radius: 20px;
-            width: 40px;
+            width: 35px;
+            padding: 5px;
         }
-        #addimgicon{
-            text-align: right;
+        .card{
+            margin: 0px;
+            padding: 0px;
+            width: 30%;
+            height: 45vh;
+            border-radius: 20px;
+            position: relative;
         }
-        #md4{
-            height: 450px;
+        .card-img img{
+            width: 100%;
+            border-radius: 20px;
         }
-        #row2{
-            width: 420px;
-            height: 280px;
-            border-radius: 35px;
-        }
-        .container .btn {
+        .card-btn{
             position: absolute;
-            top: 50%;
-            left: 23%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
+            top: 5%;
+            border-radius: 20px;
+            border: none;
             background-color: #fff;
             color: #1690a7;
-            font-size: 16px;
-            padding: 12px 35px;
-            border: none;
-            cursor: pointer;
-            border-radius: 25px;
+            padding: 10px;
             font-weight: bold;
-            }
+            margin-left: 20px;
+            padding-inline: 15px;
+        }
+        .imgheading{
+            position: absolute;
+            top: 50%;
+            color: #fff;
+            margin-left: 20px;
+        }
+        .loremtxt{
+            position: absolute;
+            color: #fff;
+            top: 55%;
+            margin-left: 20px;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+        .cardvector{
+            margin-top: 15px;
+        }
+        #vector{
+            width: 40px;
+            margin-inline: 25px;
+        }
+       .des{
+        display: flex;
+       }
+       .des p{
+        color: grey;
+        font-weight: bold;
+        margin-inline: 30px;
+       }
+       
+    
+        
 
 </style>    
     
 </head>
 <body>
     <div class="container">
-        <div class="row" id="row1" style="margin-top: 30px;">
+        <div class="row py-3" id="row1" style="align-items: center;">
                 <div class="col-md-1">
                     <img src="imgs/logo.png" id="logo">
                 </div>
@@ -144,10 +173,10 @@
                     <input type="text" placeholder="Search Investor"><i class="fa-solid fa-magnifying-glass icon"></i>
                     <input type="text" placeholder="Search Tenant"><i class="fa-solid fa-magnifying-glass icon"></i> 
                 </div> 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <i class="fa-solid fa-bell new-icons"></i>
                     <i class="fa-solid fa-comment new-icons"></i>
-                    <img src="" id="pro">
+                    <img src="imgs/profile.jpg" id="pro">
                     <b><i class="fa-sharp fa-solid fa-angle-down new-icons"></i></b>
                 </div>
         </div>
@@ -171,31 +200,32 @@
     <div class="container py-5">
         <div class="row" >
             <div class="col-md-6"><h4>10 Deals</h4></div>
-            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" ></div>
+            <div class="col-md-6" id="addimgicon"><a href="property.html"><img src="imgs/icons8-plus-math-24.png" id="addicon" ></a></div>
         </div>
         <hr style="color:grey; opacity: .3; height: 1px;">
         <div class="row">
-            <div class="col-md-4" id="md4">
-                <img src="imgs/1.jpg" class="img-fluid" id="row2">
-            </div>
-            <div class="col-md-4" id="md4" >
-                <img src="imgs/2.jpg" class="img-fluid" id="row2">
-            </div>
-            <div class="col-md-4" id="md4">
-                <img src="imgs/3.jpg" class="img-fluid" id="row2">
+            <div class="card">
+                <div class="card-img">
+                    <button class="card-btn">Random-Text</button>
+                    <img src="imgs/1.jpg">
+                    <h3 class="imgheading">Click for more details</h3>
+                    <p class="loremtxt">Lorem ipsum dolor ncidunt sapiente.</p>
+                </div>
+                <div class="cardvector">
+                    <img id="vector" src="imgs/dollar.png">
+                    <img id="vector" src="imgs/yeild.png">
+                    <img id="vector" src="imgs/arrow.png">
+                    <img id="vector" style="width: 50px; margin-inline: 30px;" src="imgs/calender.png">
+                </div>
+                <div class="des">
+                    <p>ROI<br>0%</p>
+                    <p style="margin-left: 32px;">Yeild<br>&nbsp;&nbsp;8%</p>
+                    <p style="margin-left: 25px;">hfjhufi<br>643284</p>
+                    <p style="margin-inline: 20px;">Months<br>&nbsp;&nbsp;&nbsp;&nbsp;2</p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4" id="md4" >
-                <img src="imgs/1.jpg" class="img-fluid" id="row2">
-            </div>
-            <div class="col-md-4" id="md4">
-                <img src="imgs/2.jpg" class="img-fluid" id="row2">
-            </div>
-            <div class="col-md-4" id="md4">
-                <img src="imgs/3.jpg" class="img-fluid" id="row2">
-            </div>
-        </div>
+
     </div>
 </body>
 <!-- JS link -->
