@@ -2,6 +2,11 @@
 session_start();
 if(isset($_SESSION['id']) && isset($_SESSION['name'])){
 ?>
+<?php 
+    include('conn.php');
+    $query = "select * from property";
+    $result = mysqli_query($con,$query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -139,7 +144,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
         .loremtxt{
             position: absolute;
             color: #fff;
-            top: 55%;
+            top: 45%;
             margin-left: 20px;
             font-size: 18px;
             margin-top: 5px;
@@ -212,24 +217,25 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
         <hr style="color:grey; opacity: .3; height: 1px;">
         <div class="row">
             <div class="card">
-                <div class="card-img">
-                    <button class="card-btn">Random-Text</button>
-                    <img src="imgs/1.jpg">
-                    <h3 class="imgheading">Click for more details</h3>
-                    <p class="loremtxt">Lorem ipsum dolor ncidunt sapiente.</p>
-                </div>
-                <div class="cardvector">
-                    <img id="vector" src="imgs/dollar.png">
-                    <img id="vector" src="imgs/yeild.png">
-                    <img id="vector" src="imgs/arrow.png">
-                    <img id="vector" style="width: 50px; margin-inline: 30px;" src="imgs/calender.png">
-                </div>
-                <div class="des">
-                    <p>ROI<br>0%</p>
-                    <p style="margin-left: 32px;">Yeild<br>&nbsp;&nbsp;8%</p>
-                    <p style="margin-left: 25px;">hfjhufi<br>643284</p>
-                    <p style="margin-inline: 20px;">Months<br>&nbsp;&nbsp;&nbsp;&nbsp;2</p>
-                </div>
+                <?php while($rows = mysqli_fetch_assoc($result)){ ?>
+                    <div class="card-img">
+                        <button class="card-btn">Random-Text</button>
+                        <img src="imgs/1.jpg">
+                        <p class="loremtxt"><?php echo $rows['description']; ?></p>
+                    </div>
+                    <div class="cardvector">
+                        <img id="vector" src="imgs/dollar.png">
+                        <img id="vector" src="imgs/yeild.png">
+                        <img id="vector" src="imgs/arrow.png">
+                        <img id="vector" style="width: 50px; margin-inline: 30px;" src="imgs/calender.png">
+                    </div>
+                    <div class="des">
+                        <p>ROI<br>0%</p>
+                        <p style="margin-left: 32px;">Yeild<br>&nbsp;&nbsp;8%</p>
+                        <p style="margin-left: 25px;">hfjhufi<br>643284</p>
+                        <p style="margin-inline: 20px;">Months<br>&nbsp;&nbsp;&nbsp;&nbsp;2</p>
+                    </div>
+                <?php } ?>
             </div>
         </div>
 

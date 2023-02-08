@@ -1,5 +1,7 @@
 <?php
 include 'conn.php';
+$query = "select * from property_images";
+$result = mysqli_query($con,$query);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -344,15 +346,22 @@ include 'conn.php';
                     <li><a href="">Evication</a></li>
                     <li><a href="images.php">Images</a></li>
                     <li><a href="docs.php">Docs</a></li>
-                    li><a href="renovation.php">Renovation</a></li>
+                    <li><a href="renovation.php">Renovation</a></li>
                     <li><a href="marketing.php">Marketing</a></li>
                 </ul>
             </nav>
         </div>
-        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
+        <div class="row" style=" margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
             <div class="col-md-6"><h4 style="margin-top: 15px;">Images</h4></div>
             <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-            <hr style="color:grey; opacity: .3; height: 1px; margin-top: -120px;">
+            <hr style="color:grey; opacity: .3; height: 1px;">
+            <table>
+                <?php while($rows = mysqli_fetch_assoc($result)){ ?>
+                <tr>
+                    <td style="display: flex; margin: 10px;"><img style="width:100px; height:100px;" src="<?php echo $rows['image']; ?>"> </td>
+                </tr>
+                <?php } ?>
+            </table>
         </div>
     </div>
     <!-- owl carousel library-->

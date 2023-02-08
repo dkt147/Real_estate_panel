@@ -1,5 +1,7 @@
 <?php
 include 'conn.php';
+$query = "select * from property_document";
+$result = mysqli_query($con,$query);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -352,7 +354,15 @@ include 'conn.php';
         <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
             <div class="col-md-6"><h4 style="margin-top: 15px;">Docs</h4></div>
             <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-            <hr style="color:grey; opacity: .3; height: 1px; margin-top: -120px;">
+            <hr style="color:grey; opacity: .3; height: 1px; margin-top:-70px">
+            <table class="doc" style="margin-top: -120px; padding:10px;">
+            <?php while($rows = mysqli_fetch_assoc($result)){ ?>
+                <tr style="">
+                    <td style="border-bottom: 1px solid grey;"><?php echo $rows['file']; ?> </td>
+                    <td style="border-bottom: 1px solid grey;"><?php echo $rows['created_at']; ?> </td>
+                </tr>
+            <?php } ?>
+            </table>
         </div>
     </div>
     <!-- owl carousel library-->

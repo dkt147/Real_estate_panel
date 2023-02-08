@@ -266,6 +266,24 @@ include 'conn.php';
             list-style-type: none;
             color: grey;
         }
+        table tr{
+            border-bottom: 1px solid grey;
+        }
+        table th{
+            padding:5px;
+        }
+        table tr td{
+            padding: 5px;
+        }
+        table td button{
+            padding:8px;
+            background-color:#1F4AB8;
+            color: #fff;
+            font-size:20px;
+            width: 100px;
+            border: none;
+            border-radius: 18px;
+        }
 </style>    
     
 </head>
@@ -349,11 +367,31 @@ include 'conn.php';
                 </ul>
             </nav>
         </div>
-        <div class="row" style="height: 50vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
+        <div class="row" style=" padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
             <div class="col-md-3"><h4 style="margin-top: 15px;">Contractor</h4></div>
             <div class="col-md-6" style=" display: flex; margin-top:15px; font-size:20px;"><a href="allcontractor.php"><p style="margin-inline:45px">All Contractor</p></a><a id="cont" href="tickets.php"><p style="margin-inline:35px">Ticket</p></a><a id="cont" href="closeticket.php"><p style="margin-inline:35px">Close Ticket</p></a></div>
             <div class="col-md-3" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-            <hr style="color:grey; opacity: .3; height: 1px; margin-top: -220px;">
+            <hr style="color:grey; opacity: .3; height: 1px;">
+            <table>
+                <tr>
+                    <th>Profile</th>
+                    <th>Number</th>
+                    <th>Date</th>
+                    <th>Wo Number</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>More</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><button>Edit</button></td>
+                    <td></td>
+                </tr>
+            </table>
         </div>
     </div>
     <!-- owl carousel library-->

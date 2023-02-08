@@ -1,5 +1,27 @@
 <?php
 include 'conn.php';
+if(isset($_POST['save'])){
+    $address = $_POST['address'];
+    $propertytype = $_POST['propertytype'];
+    $year = $_POST['year'];
+    $type = $_POST['type'];
+    $userid = $_POST['userid'];
+    $bed = $_POST['bedrooms'];
+    $bath = $_POST['bathrooms'];
+    $rent = $_POST['rent'];
+    $location = $_POST['location'];
+    $start = $_POST['startedat'];
+    $end = $_POST['endedat'];
+    $created = $_POST['createdat'];
+    $deleted = $_POST['deletedat'];
+    $updated = $_POST['updatedat'];
+
+    $query = "insert into property(address, location, type_id, user_id, started_at, ended_at, price, description, property_type,
+                rooms, bath, year, bed, area, plan_image, created_at, updated_at, deleted_at) values('$address','$propertytype',
+                '$year','$type','$userid','$bed','$bath','$rent','$location','$start','$end','$created','$deleted','$updated')";
+    $result = mysqli_query($conn, $query);
+}
+
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,13 +216,13 @@ include 'conn.php';
         li a {
             font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 18px;
             font-family: sans-serif;
             display: block;
             color: gray;
             text-align: center;
             text-decoration: none;
-            padding-inline: 15px;
+            padding-inline: 12px;
             margin-inline: 15px;
         }
         
@@ -338,8 +360,9 @@ include 'conn.php';
                     <li><a href="contractor.php">Contractor</a></li>
                     <li><a href="">Leasing</a></li>
                     <li><a href="">Evication</a></li>
-                    <li><a href="">Images</a></li>
-                    <li><a href="renovationphp">Renovation</a></li>
+                    <li><a href="docs.php">Docs</a></li>
+                    <li><a href="images.php">Images</a></li>
+                    <li><a href="renovation.php">Renovation</a></li>
                     <li><a href="marketing.php">Marketing</a></li>
                 </ul>
             </nav>
@@ -351,29 +374,43 @@ include 'conn.php';
                 <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 5px;"></div>
 
                 <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
-                <form style="margin: 15px; padding: 5px;">
-                    <label id="formlabel" >Status:</label>
-                    <input type="radio" id="radiobtn" name="activestatus" value="activestatus">
-                    <label id="labelradiobtn">Active</label>
-                    <input type="radio" id="radiobtn" name="notactivestatus" value="notactivestatus">
-                    <label id="labelradiobtn">Not-active</label>
-                    <input type="radio" id="radiobtn" name="soldout" value="soldout">
-                    <label id="labelradiobtn">Sold Out</label>
-                    <br>
-                    <label id="formlabel" >Year</label>
-                    <input class="forminput" type="text" name="year"><br>
-                    <label id="formlabel">Property Type</label>
-                    <input class="forminput" type="text" name="property-type"><br>
-                    <label id="formlabel">Branch</label>
-                    <input class="forminput" type="text" name="branch"><br>
-                    <label id="formlabel">sqre ft.</label>
-                    <input class="forminput" type="text" name="sqreft"><br>
-                    <label id="formlabel">No. of Bedrooms:</label>
-                    <input class="forminput" type="text" name="bedrooms"><br>
-                    <label id="formlabel">No. of Bathrooms</label>
-                    <input class="forminput" type="text" name="bathrooms"><br>
-                    <label id="formlabel">Target Rent</label>
-                    <input class="forminput" type="text" name="rent">
+                <form style="margin: 15px; padding: 5px;" action="" method="post">
+                    <?php while($data = mysqli_fetch_assoc($result)){ ?>
+                        <label id="formlabel" >Year</label>
+                        <input class="forminput" type="text" name="year"><br>
+                        <label id="formlabel">Property Type</label>
+                        <input class="forminput" type="text" name="propertytype"><br>
+                        <label id="formlabel">Address</label>
+                        <input class="forminput" type="text" name="address"><br>
+                        <label id="formlabel">Type Id.</label>
+                        <select class="forminput" name="type">
+                            <option value="" >Select Type Id</option>
+                        </select><br>
+                        <label id="formlabel">User Id.</label>
+                        <input class="forminput" type="text" name="userid"><br>
+                        <label id="formlabel">Started at.</label>
+                        <input class="forminput" type="text" name="startedat"><br>
+                        <label id="formlabel">Ended at.</label>
+                        <input class="forminput" type="text" name="endedat"><br>
+                        <label id="formlabel">Rooms</label>
+                        <input class="forminput" type="text" name="rooms"><br>
+                        <label id="formlabel">sqre ft.</label>
+                        <input class="forminput" type="text" name="sqreft"><br>
+                        <label id="formlabel">No. of Bedrooms:</label>
+                        <input class="forminput" type="text" name="bedrooms"><br>
+                        <label id="formlabel">No. of Bathrooms</label>
+                        <input class="forminput" type="text" name="bathrooms"><br>
+                        <label id="formlabel">Target Rent</label>
+                        <input class="forminput" type="text" name="rent">
+                        <label id="formlabel">Location</label>
+                        <input class="forminput" type="text" name="location"><br>
+                        <label id="formlabel">Created at</label>
+                        <input class="forminput" type="text" name="createdat"><br>
+                        <label id="formlabel">Deleted at.</label>
+                        <input class="forminput" type="text" name="deletedat"><br>
+                        <label id="formlabel">Updated at</label>
+                        <input class="forminput" type="text" name="updatedat"><br>
+                    <?php } ?>
                 </form>
         </div>
         <div class="row" id="imageslider" style="height: 25vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
@@ -403,7 +440,15 @@ include 'conn.php';
                 <div class="docsbox"></div>
             </div>
         </div>
-        <div class="endbtns" style="display: flex; height: 10vh;">
+        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
+            <div class="col-md-6"><h4 style="margin-top: 15px;">Property Details</h4></div>
+            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
+            <hr style="color:grey; opacity: .3; height: 1px; ">
+            <form>
+                <input type="textarea" style= "width:100%;  height:25vh;">
+            </form>
+        </div>
+        <div class="endbtns" style="display: flex; height: 10vh; margin-top:30px;">
             <button class="save" type="submit">Save</button>
             <button class="cancel" type="submit">Cancel</button>
         </div>
