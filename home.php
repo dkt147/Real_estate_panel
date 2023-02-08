@@ -24,10 +24,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             box-sizing: border-box;
         }
         h6{
-            color: #1690a7;
+            color: #4962db;
         }
         #logoutbtn:link, #logoutbtn:visited {
-            background-color: #1690a7;
+            background-color: #4962db;
             color: white;
             padding: 10px 15px;
             text-align: center;
@@ -90,7 +90,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             font-size: 18px;
             font-family: sans-serif;
             display: block;
-            color: #3d3d3d;
+            color: gray;
             text-align: center;
             text-decoration: none;
             padding-inline: 15px;
@@ -99,14 +99,14 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
         
         /* Change the link color on hover */
         li a:hover {
-            color: #1690a7;
-            border-bottom: 3px solid #1690a7;
+            color: #4962db;
+            border-bottom: 3px solid #4962db;
         }
         h4{
             color: #000;
         }
         #addicon{
-            background-color: #1690a7;
+            background-color: #4962db;
             border-radius: 20px;
             width: 35px;
             padding: 5px;
@@ -115,6 +115,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             margin: 0px;
             padding: 0px;
             width: 30%;
+            margin: 10px;
             height: 45vh;
             border-radius: 20px;
             position: relative;
@@ -129,7 +130,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             border-radius: 20px;
             border: none;
             background-color: #fff;
-            color: #1690a7;
+            color: #4962db;
             padding: 10px;
             font-weight: bold;
             margin-left: 20px;
@@ -153,7 +154,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             margin-top: 15px;
         }
         #vector{
-            width: 40px;
+            width: 36px;
             margin-inline: 25px;
         }
        .des{
@@ -164,16 +165,32 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
         font-weight: bold;
         margin-inline: 30px;
        }
-       
+        .container .btn {
+            position: absolute;
+            top: 9%;
+            left: 21%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            background-color: #fff;
+            /* color: #1690a7; */
+            font-size: 12px;
+            padding: 6px 35px;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-weight: bold;
+        }
     
-        
+        .fa-magnifying-glass{
+            transform: translate(-11px, 1px);
+        }
 
 </style>    
     
 </head>
 <body>
-<h6>Welcome, <?php echo $_SESSION['name']; ?> </h6>
-<a id="logoutbtn" href="logout.php">Logout</a>
+<!--<h6>Welcome, --><?php //echo $_SESSION['name']; ?><!-- </h6>-->
+<!--<a id="logoutbtn" href="logout.php">Logout</a>-->
     <div class="container">
     
         <div class="row py-3" id="row1" style="align-items: center;">
@@ -195,7 +212,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
         <div class="row">
             <nav>
                 <ul>
-                    <li><a href="home.php">Dashboard</a></li>
+                    <li><a href="home.php" style="
+            color: #4962db;
+            border-bottom: 3px solid #4962db;">Dashboard</a></li>
                     <li><a href="property.php">Properties</a></li>
                     <li><a href="">Investors</a></li>
                     <li><a href="">Tenants</a></li>
@@ -206,37 +225,42 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             </nav>
         </div>
     </div>
-    <div class="container-fluid" style="height: 40vh;">
-        <img src="imgs/banner.PNG" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+    <div class="container-fluid" style="height: 60vh;margin-top:20px">
+        <img src="https://www.eliteprop.org/Images/condo-townhomes.jpg" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div class="container py-5">
         <div class="row" >
-            <div class="col-md-6"><h4>10 Deals</h4></div>
+            <div class="col-md-6"><h4><?php echo mysqli_num_rows($result); ?> Deals</h4></div>
             <div class="col-md-6" id="addimgicon"><a href="property.php"><img src="imgs/icons8-plus-math-24.png" id="addicon" ></a></div>
         </div>
         <hr style="color:grey; opacity: .3; height: 1px;">
         <div class="row">
-            <div class="card">
                 <?php while($rows = mysqli_fetch_assoc($result)){ ?>
-                    <div class="card-img">
-                        <button class="card-btn">Random-Text</button>
-                        <img src="imgs/1.jpg">
-                        <p class="loremtxt"><?php echo $rows['description']; ?></p>
+
+                    <div class="card" style="width: 25rem;height: 27rem;padding: 1px">
+                        <img class="card-img-top" src="imgs/1.jpg" alt="Card image cap" style="border-radius:border-radius: 20px;">
+                        <button class="btn btn-default">$100.00</button>
+                                                <p class="loremtxt"><?php echo "<b>".$rows['name']."</b><br>".$rows['description']; ?></p>
+                        <div class="card-body">
+
+                                                <div class="cardvector">
+                                                    <img id="vector" src="imgs/dollar.png">
+                                                    <img id="vector" src="imgs/yeild.png">
+                                                    <img id="vector" src="imgs/arrow.png">
+                                                    <img id="vector" src="imgs/calender.png">
+                                                </div>
+
+                            <div class="des">
+                                                        <p>ROI<br>0%</p>
+                                                        <p style="margin-left: 24px;">Yeild<br>&nbsp;&nbsp;8%</p>
+                                                        <p style="margin-left: 18px;">Return<br>$200.00</p>
+                                                        <p style="margin-inline: 10px;">Month<br>&nbsp;&nbsp;&nbsp;&nbsp;2</p>
+                                                    </div>
+
+                        </div>
                     </div>
-                    <div class="cardvector">
-                        <img id="vector" src="imgs/dollar.png">
-                        <img id="vector" src="imgs/yeild.png">
-                        <img id="vector" src="imgs/arrow.png">
-                        <img id="vector" style="width: 50px; margin-inline: 30px;" src="imgs/calender.png">
-                    </div>
-                    <div class="des">
-                        <p>ROI<br>0%</p>
-                        <p style="margin-left: 32px;">Yeild<br>&nbsp;&nbsp;8%</p>
-                        <p style="margin-left: 25px;">hfjhufi<br>643284</p>
-                        <p style="margin-inline: 20px;">Months<br>&nbsp;&nbsp;&nbsp;&nbsp;2</p>
-                    </div>
+
                 <?php } ?>
-            </div>
         </div>
 
     </div>

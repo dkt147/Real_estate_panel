@@ -45,10 +45,10 @@ if(isset($_POST['save'])){
             box-sizing: border-box;
         }
         h6{
-            color: #1690a7;
+            color: #4962db;
         }
         #logoutbtn:link, #logoutbtn:visited {
-            background-color: #1690a7;
+            background-color: #4962db;
             color: white;
             padding: 10px 15px;
             text-align: center;
@@ -110,7 +110,7 @@ if(isset($_POST['save'])){
             font-size: 18px;
             font-family: sans-serif;
             display: block;
-            color: #3d3d3d;
+            color: #4962db;
             text-align: center;
             text-decoration: none;
             padding-inline: 15px;
@@ -119,14 +119,14 @@ if(isset($_POST['save'])){
         
         /* Change the link color on hover */
         li a:hover {
-            color: #1690a7;
-            border-bottom: 3px solid #1690a7;
+            color: #4962db;
+            border-bottom: 3px solid #4962db;
         }
         h4{
             color: #000;
         }
         #addicon{
-            background-color: #1690a7;
+            background-color: #4962db;
             border-radius: 20px;
             width: 35px;
             padding: 5px;
@@ -144,7 +144,7 @@ if(isset($_POST['save'])){
         }
         #gradient{
             position: absolute;
-            top: 40%;
+            top: 60%;
             display: flex;
             height: 20vh;
             border: none;
@@ -228,8 +228,8 @@ if(isset($_POST['save'])){
         
         /* Change the link color to #111 (black) on hover */
         li a:hover {
-            color: #1690a7;
-            border-bottom: 3px solid #1690a7;
+            color: #4962db;
+            border-bottom: 3px solid #4962db;
         }
         #formlabel{
             width: 20%;
@@ -283,6 +283,9 @@ if(isset($_POST['save'])){
             width: 120px;
             height: 5vh;
         }
+            .fa-magnifying-glass{
+                transform: translate(-11px, 1px);
+            }
         
 </style>    
     
@@ -309,7 +312,9 @@ if(isset($_POST['save'])){
             <nav>
                 <ul>
                     <li><a href="home.php">Dashboard</a></li>
-                    <li><a href="property.php">Properties</a></li>
+                    <li><a href="property.php" style="
+            color: #4962db;
+            border-bottom: 3px solid #4962db;">Properties</a></li>
                     <li><a href="">Investors</a></li>
                     <li><a href="">Tenants</a></li>
                     <li><a href="">Suppliers</a></li>
@@ -319,14 +324,14 @@ if(isset($_POST['save'])){
             </nav>
         </div>
     </div>
-    <div class="container-fluid" style="height: 40vh; position: relative; ">
+    <div class="container-fluid" style="height: 60vh;margin-top:20px">
         <img src="imgs/banner.PNG" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
     <div class="container">
         <div class="row" id="gradient">
             <div class="divgradient">
                     <img src="imgs/profile.jpg" id="gradprofile">
-                    <p><b>John Doe</b></p>
+                    <p><b>John Doe</b><br>John Doe</p>
             </div>
             <div class="divgradient">
                     <img src="imgs/profile.jpg" id="gradprofile">
@@ -375,7 +380,6 @@ if(isset($_POST['save'])){
 
                 <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
                 <form style="margin: 15px; padding: 5px;" action="" method="post">
-                    <?php while($data = mysqli_fetch_assoc($result)){ ?>
                         <label id="formlabel" >Year</label>
                         <input class="forminput" type="text" name="year"><br>
                         <label id="formlabel">Property Type</label>
@@ -410,7 +414,6 @@ if(isset($_POST['save'])){
                         <input class="forminput" type="text" name="deletedat"><br>
                         <label id="formlabel">Updated at</label>
                         <input class="forminput" type="text" name="updatedat"><br>
-                    <?php } ?>
                 </form>
         </div>
         <div class="row" id="imageslider" style="height: 25vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">

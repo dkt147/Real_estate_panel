@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","u343233411_test");
+$con = mysqli_connect("localhost","root","","real_estate_3");
 
 if(!$con)
 {
