@@ -286,6 +286,13 @@ if(isset($_POST['save'])){
             .fa-magnifying-glass{
                 transform: translate(-11px, 1px);
             }
+            .form-control, label{
+                border-top: #ebecf0;
+                border-left: #ebecf0;
+                border-right: #ebecf0;
+                margin:10px
+            }
+
         
 </style>    
     
@@ -357,10 +364,12 @@ if(isset($_POST['save'])){
                 <p><b>Total Months</b><br>1 Month</p>
             </div>
         </div>
-        <div class="row nav py-5">
+        <div class="row nav py-5" style="">
             <nav>
                 <ul>
-                    <li><a href="property.php">Property Details</a></li>
+                    <li><a href="property.php" style="
+            color: #4962db;
+            border-bottom: 3px solid #4962db;">Property Details</a></li>
                     <li><a href="">Maintenance</a></li>
                     <li><a href="contractor.php">Contractor</a></li>
                     <li><a href="">Leasing</a></li>
@@ -373,48 +382,188 @@ if(isset($_POST['save'])){
             </nav>
         </div>
         <hr style="color:grey; opacity: .3; height: 1px; margin-top: -30px;">
-        <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;">
+        <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;
+    padding-top: 18px;">
                 <div class="col-md-6"><h4 style="margin-top: 5px;">Property Details</h4></div>
 
                 <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 5px;"></div>
 
                 <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
-                <form style="margin: 15px; padding: 5px;" action="" method="post" class="form-group">
-                        <label id="formlabel" >Year</label>
-                        <input class="forminput form-control" type="text" name="year"><br>
-                        <label id="formlabel">Property Type</label>
-                        <input class="forminput" type="text" name="propertytype"><br>
-                        <label id="formlabel">Address</label>
-                        <input class="forminput" type="text" name="address"><br>
-                        <label id="formlabel">Type Id.</label>
-                        <select class="forminput" name="type">
-                            <option value="" >Select Type Id</option>
-                        </select><br>
-                        <label id="formlabel">User Id.</label>
-                        <input class="forminput" type="text" name="userid"><br>
-                        <label id="formlabel">Started at.</label>
-                        <input class="forminput" type="text" name="startedat"><br>
-                        <label id="formlabel">Ended at.</label>
-                        <input class="forminput" type="text" name="endedat"><br>
-                        <label id="formlabel">Rooms</label>
-                        <input class="forminput" type="text" name="rooms"><br>
-                        <label id="formlabel">sqre ft.</label>
-                        <input class="forminput" type="text" name="sqreft"><br>
-                        <label id="formlabel">No. of Bedrooms:</label>
-                        <input class="forminput" type="text" name="bedrooms"><br>
-                        <label id="formlabel">No. of Bathrooms</label>
-                        <input class="forminput" type="text" name="bathrooms"><br>
-                        <label id="formlabel">Target Rent</label>
-                        <input class="forminput" type="text" name="rent">
-                        <label id="formlabel">Location</label>
-                        <input class="forminput" type="text" name="location"><br>
-                        <label id="formlabel">Created at</label>
-                        <input class="forminput" type="text" name="createdat"><br>
-                        <label id="formlabel">Deleted at.</label>
-                        <input class="forminput" type="text" name="deletedat"><br>
-                        <label id="formlabel">Updated at</label>
-                        <input class="forminput" type="text" name="updatedat"><br>
+<!--                <form style="margin: 15px; padding: 5px;" action="" method="post" class="form-group">-->
+<!--                        <label id="formlabel" >S</label>-->
+<!--                        <input class="forminput form-control" type="text" name="year"><br>-->
+<!--                        <label id="formlabel">Property Type</label>-->
+<!--                        <input class="forminput" type="text" name="propertytype"><br>-->
+<!--                        <label id="formlabel">Address</label>-->
+<!--                        <input class="forminput" type="text" name="address"><br>-->
+<!--                        <label id="formlabel">Type Id.</label>-->
+<!--                        <select class="forminput" name="type">-->
+<!--                            <option value="" >Select Type Id</option>-->
+<!--                        </select><br>-->
+<!--                        <label id="formlabel">User Id.</label>-->
+<!--                        <input class="forminput" type="text" name="userid"><br>-->
+<!--                        <label id="formlabel">Started at.</label>-->
+<!--                        <input class="forminput" type="text" name="startedat"><br>-->
+<!--                        <label id="formlabel">Ended at.</label>-->
+<!--                        <input class="forminput" type="text" name="endedat"><br>-->
+<!--                        <label id="formlabel">Rooms</label>-->
+<!--                        <input class="forminput" type="text" name="rooms"><br>-->
+<!--                        <label id="formlabel">sqre ft.</label>-->
+<!--                        <input class="forminput" type="text" name="sqreft"><br>-->
+<!--                        <label id="formlabel">No. of Bedrooms:</label>-->
+<!--                        <input class="forminput" type="text" name="bedrooms"><br>-->
+<!--                        <label id="formlabel">No. of Bathrooms</label>-->
+<!--                        <input class="forminput" type="text" name="bathrooms"><br>-->
+<!--                        <label id="formlabel">Target Rent</label>-->
+<!--                        <input class="forminput" type="text" name="rent">-->
+<!--                        <label id="formlabel">Location</label>-->
+<!--                        <input class="forminput" type="text" name="location"><br>-->
+<!--                        <label id="formlabel">Created at</label>-->
+<!--                        <input class="forminput" type="text" name="createdat"><br>-->
+<!--                        <label id="formlabel">Deleted at.</label>-->
+<!--                        <input class="forminput" type="text" name="deletedat"><br>-->
+<!--                        <label id="formlabel">Updated at</label>-->
+<!--                        <input class="forminput" type="text" name="updatedat"><br>-->
+<!--                </form>-->
+            <div class="container">
+                <form>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">Status:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group" style="margin-bottom: 20px">
+                                <input type="radio" name="contact-preference" id="contact-preference" value="am" checked style="width: 104px;height: 20px;"><label>Active</label>
+                                <input type="radio" name="contact-preference" id="contact-preference" value="pm" checked style="width: 104px;height: 20px;"><label>Non-Active</label>
+                                <input type="radio" name="contact-preference" id="contact-preference" value="pm" checked style="width: 104px;height: 20px;"><label>Sold-Out</label>
+
+                            </div>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">Year:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="" id="year" name="year">
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">Property Type:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option class="form-control">Buy</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">Branch:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="" id="branch" name="branch">
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">Sqft.:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="" id="sqft" name="sqft">
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">No of Bedrooms:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="" id="bedrooms" name="bedrooms">
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">No of Bathroom:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="" id="bathroom" name="bathroom">
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+
+                    <div class="row" style="margin-bottom: 50px">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="first">Price:</label>
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="" id="price" name="price">
+                            </div>
+                        </div>
+                        <!--  col-md-6   -->
+                    </div>
+        </div>
+
                 </form>
+            </div>
         </div>
         <div class="row" id="imageslider" style="height: 25vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
             <div class="col-md-6"><h4 style="margin-top: 15px;">Images</h4></div>
