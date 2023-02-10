@@ -146,7 +146,7 @@ if(isset($_POST['save'])){
             position: absolute;
             top: 60%;
             display: flex;
-            height: 20vh;
+            height: 144px;
             border: none;
             border-radius: 12px;
             background-image: linear-gradient(to bottom right, #1F4AB8, #00BFFF);
@@ -156,17 +156,17 @@ if(isset($_POST['save'])){
             width: 400px;
             margin: 20px;
             margin-left: 180px;
-            height: 15vh;
+            height: 100px;
             display: flex;
             padding: 15px;
             border-radius: 12px;
 
         }
-        #gradprofile{
-            height: 10vh;
-            border-radius: 45px;
-            width: 100px;
-        }
+            #gradprofile {
+                height: 89px;
+                border-radius: 82px;
+                width: 100px;
+            }
         .divgradient p{
             font-size: 20px;
             margin-left: 20px;
@@ -190,8 +190,8 @@ if(isset($_POST['save'])){
                 margin-top: 30px;
             }
             .plan{
-                background-color: aliceblue;
-                height: 18vh;
+                background-color: white;
+                height: 180px;
                 border-radius: 12px;
                 width: 310px;
                 margin: 10px;   
@@ -237,7 +237,7 @@ if(isset($_POST['save'])){
         }
         .forminput{
             width: 75%;
-            background-color: aliceblue;
+            background-color: white;
             border-bottom: 1px solid grey;
             border-radius: 0px;
         }
@@ -290,7 +290,7 @@ if(isset($_POST['save'])){
 </style>    
     
 </head>
-<body>
+<body style="                background: #F7F8FA;">
     <div class="container">
         <div class="row py-3" id="row1" style="align-items: center;">
             <div class="col-md-1">
@@ -373,15 +373,15 @@ if(isset($_POST['save'])){
             </nav>
         </div>
         <hr style="color:grey; opacity: .3; height: 1px; margin-top: -30px;">
-        <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
+        <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;">
                 <div class="col-md-6"><h4 style="margin-top: 5px;">Property Details</h4></div>
 
                 <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 5px;"></div>
 
                 <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
-                <form style="margin: 15px; padding: 5px;" action="" method="post">
+                <form style="margin: 15px; padding: 5px;" action="" method="post" class="form-group">
                         <label id="formlabel" >Year</label>
-                        <input class="forminput" type="text" name="year"><br>
+                        <input class="forminput form-control" type="text" name="year"><br>
                         <label id="formlabel">Property Type</label>
                         <input class="forminput" type="text" name="propertytype"><br>
                         <label id="formlabel">Address</label>
@@ -416,7 +416,7 @@ if(isset($_POST['save'])){
                         <input class="forminput" type="text" name="updatedat"><br>
                 </form>
         </div>
-        <div class="row" id="imageslider" style="height: 25vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
+        <div class="row" id="imageslider" style="height: 25vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
             <div class="col-md-6"><h4 style="margin-top: 15px;">Images</h4></div>
             <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
             <hr style="color:grey; opacity: .3; height: 1px; margin-top: -90px;">
@@ -433,7 +433,7 @@ if(isset($_POST['save'])){
                 <div class="item"><h4>10</h4></div>
             </div>
         </div>
-        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
+        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
             <div class="col-md-6"><h4 style="margin-top: 15px;">Docs</h4></div>
             <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
             <hr style="color:grey; opacity: .3; height: 1px; margin-top: -40px;">
@@ -443,7 +443,7 @@ if(isset($_POST['save'])){
                 <div class="docsbox"></div>
             </div>
         </div>
-        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: aliceblue;">
+        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
             <div class="col-md-6"><h4 style="margin-top: 15px;">Property Details</h4></div>
             <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
             <hr style="color:grey; opacity: .3; height: 1px; ">
