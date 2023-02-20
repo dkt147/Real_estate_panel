@@ -19,7 +19,7 @@
         #logoutbtn:hover{
             opacity: .7;
         }
-        
+
         input{
             display: inline;
             width: 250px;
@@ -27,9 +27,9 @@
             border-radius: 25px;
             text-align: left;
             padding: 15px;
-            background: #ebecf0;
-            border: none;
+            border: 1px solid grey;
             margin-inline: 10px;
+
         }
         .icon{
             margin-left: -35px;
@@ -60,11 +60,11 @@
             padding: 0;
             overflow: hidden;
         }
-        
+
         li {
             float: left;
         }
-        
+
         li a {
             font-weight: bold;
             font-size: 18px;
@@ -76,7 +76,7 @@
             padding-inline: 15px;
             margin-inline: 15px;
         }
-        
+
         /* Change the link color to #111 (black) on hover */
         li a:hover {
             color: #1690a7;

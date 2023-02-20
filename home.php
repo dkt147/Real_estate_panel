@@ -4,7 +4,13 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
 ?>
 <?php 
     include('conn.php');
-    $query = "select * from property";
+
+    if(isset($_GET['name'])) {
+        $name = $_GET['name'];
+        $query = "select property.*,analysis.* from property JOIN analysis ON analysis.p_id = property.id where address like '$name%'";
+    }else{
+        $query = "select property.*,analysis.* from property JOIN analysis ON analysis.p_id = property.id";
+    }
     $result = mysqli_query($con,$query);
 ?>
 <!DOCTYPE html>
@@ -14,7 +20,6 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style2.css">
-    <title>Document</title>
     <!--Bootstrap CDN-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--Fonts Awesome CDN-->
@@ -66,7 +71,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             border: none;
         }
         #logo{
-            width: 100px;
+            width: 70px;
             align-items: center;
             margin-top: -5px;
         }
@@ -163,7 +168,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
        .des p{
         color: grey;
         font-weight: bold;
-        margin-inline: 30px;
+        margin-inline: 26px;
        }
         .container .btn {
             position: absolute;
@@ -185,8 +190,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             transform: translate(-11px, 1px);
         }
 
-</style>    
-    
+</style>
+
+    <link rel="icon" type="image/x-icon" href="imgs/logo_2.png">
+    <title>Hagag | Home</title>
 </head>
 <body>
 <!--<h6>Welcome, --><?php //echo $_SESSION['name']; ?><!-- </h6>-->
@@ -195,10 +202,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
     
         <div class="row py-3" id="row1" style="align-items: center;">
                 <div class="col-md-1">
-                    <img src="imgs/logo.png" id="logo">
+                    <img src="imgs/logo_2.png" id="logo">
                 </div>
                 <div class="col-md-8">
-                    <input type="text" placeholder="Search Property"><i class="fa-solid fa-magnifying-glass icon"></i>          
+                    <input type="text" placeholder="Search Property" onkeydown="search(this)"><i class="fa-solid fa-magnifying-glass icon"></i>
                     <input type="text" placeholder="Search Investor"><i class="fa-solid fa-magnifying-glass icon"></i>
                     <input type="text" placeholder="Search Tenant"><i class="fa-solid fa-magnifying-glass icon"></i> 
                 </div> 
@@ -212,10 +219,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
         <div class="row">
             <nav>
                 <ul>
+                    <li><a href="home.php" >Dashboard</a></li>
                     <li><a href="home.php" style="
             color: #4962db;
-            border-bottom: 3px solid #4962db;">Dashboard</a></li>
-                    <li><a href="property.php">Properties</a></li>
+            border-bottom: 3px solid #4962db;">Properties</a></li>
                     <li><a href="">Investors</a></li>
                     <li><a href="">Tenants</a></li>
                     <li><a href="">Suppliers</a></li>
@@ -226,21 +233,21 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
         </div>
     </div>
     <div class="container-fluid" style="height: 60vh;margin-top:20px">
-        <img src="https://www.eliteprop.org/Images/condo-townhomes.jpg" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="imgs/main_banner.png" class="img-fluid" style="width: 100%; height: 85%; object-fit: cover;">
     </div>
     <div class="container py-5">
         <div class="row" >
             <div class="col-md-6"><h4><?php echo mysqli_num_rows($result); ?> Deals</h4></div>
-            <div class="col-md-6" id="addimgicon"><a href="property.php"><img src="imgs/icons8-plus-math-24.png" id="addicon" ></a></div>
+            <div class="col-md-6" id="addimgicon"><a href="create_property.php"><img src="imgs/icons8-plus-math-24.png" id="addicon" ></a></div>
         </div>
         <hr style="color:grey; opacity: .3; height: 1px;">
         <div class="row">
                 <?php while($rows = mysqli_fetch_assoc($result)){ ?>
 
-                    <div class="card" style="width: 25rem;height: 27rem;padding: 1px">
+                    <div class="card" style="width: 25rem;height: 27rem;padding: 1px" onclick="window.location='property.php?id=<?php echo $rows['id']?>'">
                         <img class="card-img-top" src="imgs/1.jpg" alt="Card image cap" style="border-radius:border-radius: 20px;">
-                        <button class="btn btn-default">$100.00</button>
-                                                <p class="loremtxt"><?php echo "<b>".$rows['name']."</b><br>".$rows['description']; ?></p>
+                        <button class="btn btn-default">$ <?php echo sprintf("%.2f",$rows['price'])?></button>
+                                                <p class="loremtxt"><?php echo "<b>".$rows['address']."</b><br>".$rows['description']; ?></p>
                         <div class="card-body">
 
                                                 <div class="cardvector">
@@ -251,10 +258,10 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
                                                 </div>
 
                             <div class="des">
-                                                        <p>ROI<br>0%</p>
-                                                        <p style="margin-left: 24px;">Yeild<br>&nbsp;&nbsp;8%</p>
-                                                        <p style="margin-left: 18px;">Return<br>$200.00</p>
-                                                        <p style="margin-inline: 10px;">Month<br>&nbsp;&nbsp;&nbsp;&nbsp;2</p>
+                                                        <p>ROI<br><?php echo $rows['roi']?> %</p>
+                                                        <p style="margin-left: 24px;">Yeild<br>&nbsp;&nbsp;<?php echo $rows['yiels']?> %</p>
+                                                        <p style="margin-left: 18px;">Return<br>$ <?php echo $rows['return_amount']?></p>
+                                                        <p style="margin-inline: 10px;">Month<br>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $rows['month']?></p>
                                                     </div>
 
                         </div>
@@ -268,7 +275,13 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
 <!-- JS link -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
-
+<script>
+    function search(ele) {
+        if(event.key === 'Enter') {
+            window.location.replace('home.php?name='+ele.value);
+        }
+    }
+</script>
 <?php
 }else{
     header("Location: index.php");

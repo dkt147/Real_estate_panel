@@ -1,26 +1,5 @@
 <?php
 include 'conn.php';
-if(isset($_POST['save'])){
-    $address = $_POST['address'];
-    $propertytype = $_POST['propertytype'];
-    $year = $_POST['year'];
-    $type = $_POST['type'];
-    $userid = $_POST['userid'];
-    $bed = $_POST['bedrooms'];
-    $bath = $_POST['bathrooms'];
-    $rent = $_POST['rent'];
-    $location = $_POST['location'];
-    $start = $_POST['startedat'];
-    $end = $_POST['endedat'];
-    $created = $_POST['createdat'];
-    $deleted = $_POST['deletedat'];
-    $updated = $_POST['updatedat'];
-
-    $query = "insert into property(address, location, type_id, user_id, started_at, ended_at, price, description, property_type,
-                rooms, bath, year, bed, area, plan_image, created_at, updated_at, deleted_at) values('$address','$propertytype',
-                '$year','$type','$userid','$bed','$bath','$rent','$location','$start','$end','$created','$deleted','$updated')";
-    $result = mysqli_query($conn, $query);
-}
 
  ?>
 <!DOCTYPE html>
@@ -30,7 +9,7 @@ if(isset($_POST['save'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style2.css">
-    <title>Document</title>
+    <title>Hagag | Property</title>
     <!--Bootstrap CDN-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--Jquery-->
@@ -47,6 +26,7 @@ if(isset($_POST['save'])){
         h6{
             color: #4962db;
         }
+            #mapid { height: 220px; }
         #logoutbtn:link, #logoutbtn:visited {
             background-color: #4962db;
             color: white;
@@ -70,7 +50,6 @@ if(isset($_POST['save'])){
             border-radius: 25px;
             text-align: left;
             padding: 18px;
-            background: #ebecf0;
             border: none;
             margin-inline: 10px;
         }
@@ -86,7 +65,7 @@ if(isset($_POST['save'])){
             border: none;
         }
         #logo{
-            width: 100px;
+            width: 70px;
             align-items: center;
             margin-top: -5px;
         }
@@ -293,15 +272,22 @@ if(isset($_POST['save'])){
                 margin:10px
             }
 
-        
-</style>    
-    
+        label{
+            font-weight: bold;
+        }
+</style>
+
+    <link rel="icon" type="image/x-icon" href="imgs/logo_2.png">
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 <body style="                background: #F7F8FA;">
     <div class="container">
         <div class="row py-3" id="row1" style="align-items: center;">
             <div class="col-md-1">
-                <img src="imgs/logo.png" id="logo">
+                <img src="imgs/logo_2.png" id="logo">
             </div>
             <div class="col-md-8">
                 <input id="input1" type="text" placeholder="Search Property"><i class="fa-solid fa-magnifying-glass icon"></i>          
@@ -332,119 +318,91 @@ if(isset($_POST['save'])){
         </div>
     </div>
     <div class="container-fluid" style="height: 60vh;margin-top:20px">
-        <img src="imgs/banner.PNG" class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;">
+        <img src="imgs/main_banner.png" class="img-fluid" style="width: 100%; height: 85%; object-fit: cover;">
     </div>
-    <div class="container">
-        <div class="row" id="gradient">
-            <div class="divgradient">
-                    <img src="imgs/profile.jpg" id="gradprofile">
-                    <p><b>John Doe</b><br>John Doe</p>
-            </div>
-            <div class="divgradient">
-                    <img src="imgs/profile.jpg" id="gradprofile">
-                    <p><b>John Doe</b></p>
-            </div>
-            <p id="unique">309 s 4" St.</p>
-        </div>
-        <div class="row" style="margin-top: 140px;" id="plans">
-            <div class="plan">
-                <img src="imgs/ROI.png">
-                <p><b>ROI</b><br>0%</p>
-            </div>
-            <div class="plan">
-                <img src="imgs/dollar.jpg">
-                <p><b>YEILD</b><br>0%- infinity</p>
-            </div>
-            <div class="plan">
-                <img src="imgs/return.jpg">
-                <p><b>Total Return</b><br>5389635</p>
-            </div>
-            <div class="plan">
-                <img src="imgs/totalMonths.jpg">
-                <p><b>Total Months</b><br>1 Month</p>
-            </div>
-        </div>
-        <div class="row nav py-5" style="">
-            <nav>
-                <ul>
-                    <li><a href="property.php" style="
+    <?php
+    if(isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $query = "select property.*,analysis.* from property JOIN analysis ON analysis.p_id = property.id where property.id = $id";
+        $result = mysqli_query($con,$query);
+
+        while($row = mysqli_fetch_assoc($result)){?>
+
+            <div class="container">
+                <div class="row" id="gradient">
+                    <div class="divgradient">
+                        <img src="imgs/profile.jpg" id="gradprofile">
+                        <p><b>John Doe</b><br>John Doe</p>
+                    </div>
+                    <div class="divgradient">
+                        <img src="imgs/profile.jpg" id="gradprofile">
+                        <p><b>John Doe</b><br>John Doe</p>
+                    </div>
+                    <p id="unique"><?php echo $row['area']." Sqft.";?></p>
+                </div>
+                <div class="row" style="margin-top: 140px;" id="plans">
+                    <div class="plan">
+                        <img src="imgs/ROI.png">
+                        <p><b>ROI</b><br><?php echo $row['roi'];?> %</p>
+                    </div>
+                    <div class="plan">
+                        <img src="imgs/dollar.jpg">
+                        <p><b>YEILD</b><br><?php echo $row['yiels'];?> %- infinity</p>
+                    </div>
+                    <div class="plan">
+                        <img src="imgs/return.jpg">
+                        <p><b>Total Return</b><br>$ <?php echo $row['return_amount'];?> </p>
+                    </div>
+                    <div class="plan">
+                        <img src="imgs/totalMonths.jpg">
+                        <p><b>Total Months</b><br><?php echo $row['month'];?>  Month</p>
+                    </div>
+                </div>
+                <div class="row nav py-5" style="">
+                    <nav>
+                        <ul>
+                            <li><a href="property.php" style="
             color: #4962db;
             border-bottom: 3px solid #4962db;">Property Details</a></li>
-                    <li><a href="">Maintenance</a></li>
-                    <li><a href="contractor.php">Contractor</a></li>
-                    <li><a href="">Leasing</a></li>
-                    <li><a href="">Evication</a></li>
-                    <li><a href="docs.php">Docs</a></li>
-                    <li><a href="images.php">Images</a></li>
-                    <li><a href="renovation.php">Renovation</a></li>
-                    <li><a href="marketing.php">Marketing</a></li>
-                </ul>
-            </nav>
-        </div>
-        <hr style="color:grey; opacity: .3; height: 1px; margin-top: -30px;">
-        <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;
+                            <li><a href="">Maintenance</a></li>
+                            <li><a href="contractor.php">Contractor</a></li>
+                            <li><a href="">Leasing</a></li>
+                            <li><a href="">Evication</a></li>
+                            <li><a href="docs.php">Docs</a></li>
+                            <li><a href="images.php">Images</a></li>
+                            <li><a href="renovation.php">Renovation</a></li>
+                            <li><a href="marketing.php">Marketing</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <hr style="color:grey; opacity: .3; height: 1px; margin-top: -30px;">
+                <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;
     padding-top: 18px;">
-                <div class="col-md-6"><h4 style="margin-top: 5px;">Property Details</h4></div>
+                    <div class="col-md-6"><h4 style="margin-top: 5px;">Property Details</h4></div>
 
-                <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 5px;"></div>
 
-                <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
-<!--                <form style="margin: 15px; padding: 5px;" action="" method="post" class="form-group">-->
-<!--                        <label id="formlabel" >S</label>-->
-<!--                        <input class="forminput form-control" type="text" name="year"><br>-->
-<!--                        <label id="formlabel">Property Type</label>-->
-<!--                        <input class="forminput" type="text" name="propertytype"><br>-->
-<!--                        <label id="formlabel">Address</label>-->
-<!--                        <input class="forminput" type="text" name="address"><br>-->
-<!--                        <label id="formlabel">Type Id.</label>-->
-<!--                        <select class="forminput" name="type">-->
-<!--                            <option value="" >Select Type Id</option>-->
-<!--                        </select><br>-->
-<!--                        <label id="formlabel">User Id.</label>-->
-<!--                        <input class="forminput" type="text" name="userid"><br>-->
-<!--                        <label id="formlabel">Started at.</label>-->
-<!--                        <input class="forminput" type="text" name="startedat"><br>-->
-<!--                        <label id="formlabel">Ended at.</label>-->
-<!--                        <input class="forminput" type="text" name="endedat"><br>-->
-<!--                        <label id="formlabel">Rooms</label>-->
-<!--                        <input class="forminput" type="text" name="rooms"><br>-->
-<!--                        <label id="formlabel">sqre ft.</label>-->
-<!--                        <input class="forminput" type="text" name="sqreft"><br>-->
-<!--                        <label id="formlabel">No. of Bedrooms:</label>-->
-<!--                        <input class="forminput" type="text" name="bedrooms"><br>-->
-<!--                        <label id="formlabel">No. of Bathrooms</label>-->
-<!--                        <input class="forminput" type="text" name="bathrooms"><br>-->
-<!--                        <label id="formlabel">Target Rent</label>-->
-<!--                        <input class="forminput" type="text" name="rent">-->
-<!--                        <label id="formlabel">Location</label>-->
-<!--                        <input class="forminput" type="text" name="location"><br>-->
-<!--                        <label id="formlabel">Created at</label>-->
-<!--                        <input class="forminput" type="text" name="createdat"><br>-->
-<!--                        <label id="formlabel">Deleted at.</label>-->
-<!--                        <input class="forminput" type="text" name="deletedat"><br>-->
-<!--                        <label id="formlabel">Updated at</label>-->
-<!--                        <input class="forminput" type="text" name="updatedat"><br>-->
-<!--                </form>-->
-            <div class="container">
-                <form>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="first">Status:</label>
+                    <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
+
+                    <div class="container">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="first">Status:</label>
+                                    </div>
+                                </div>
+                                <!--  col-md-6   -->
+
+                                <div class="col-md-10">
+                                    <div class="form-group" style="margin-bottom: 20px">
+                                        <input type="radio" name="contact-preference" id="contact-preference" <?php if($row['status'] == 'active'){?> checked <?php };?> value="am"  style="width: 104px;height: 20px;" disabled><label>Active</label>
+                                        <input type="radio" name="contact-preference" id="contact-preference" <?php if($row['status'] == 'non-active'){?> checked <?php };?> value="pm" style="width: 104px;height: 20px;" disabled><label>Non-Active</label>
+                                        <input type="radio" name="contact-preference" id="contact-preference" <?php if($row['status'] == 'sold-out'){?> checked <?php };?> value="pm" style="width: 104px;height: 20px;" disabled><label>Sold-Out</label>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <!--  col-md-6   -->
-
-                        <div class="col-md-10">
-                            <div class="form-group" style="margin-bottom: 20px">
-                                <input type="radio" name="contact-preference" id="contact-preference" value="am" checked style="width: 104px;height: 20px;"><label>Active</label>
-                                <input type="radio" name="contact-preference" id="contact-preference" value="pm" checked style="width: 104px;height: 20px;"><label>Non-Active</label>
-                                <input type="radio" name="contact-preference" id="contact-preference" value="pm" checked style="width: 104px;height: 20px;"><label>Sold-Out</label>
-
-                            </div>
-                            </div>
-                        </div>
-                        <!--  col-md-6   -->
+                            <!--  col-md-6   -->
                     </div>
 
                     <div class="row">
@@ -457,7 +415,7 @@ if(isset($_POST['save'])){
 
                         <div class="col-md-10">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="" id="year" name="year">
+                                <input type="text" class="form-control" placeholder="" id="year" name="year" value="<?php echo $row['year'];?>">
                             </div>
                         </div>
                         <!--  col-md-6   -->
@@ -491,27 +449,25 @@ if(isset($_POST['save'])){
 
                         <div class="col-md-10">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="" id="branch" name="branch">
+                                <input type="text" class="form-control" placeholder="" id="branch" name="branch" value="Main">
                             </div>
                         </div>
                         <!--  col-md-6   -->
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="first">Sqft.:</label>
-                            </div>
-                        </div>
-                        <!--  col-md-6   -->
-
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="" id="sqft" name="sqft">
-                            </div>
-                        </div>
-                        <!--  col-md-6   -->
-                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="col-md-2">-->
+<!--                            <div class="form-group">-->
+<!--                                <label for="first">Sqft.:</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                        <div class="col-md-10">-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" class="form-control" placeholder="" id="sqft" name="sqft">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <div class="row">
                         <div class="col-md-2">
@@ -523,7 +479,7 @@ if(isset($_POST['save'])){
 
                         <div class="col-md-10">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="" id="bedrooms" name="bedrooms">
+                                <input type="text" class="form-control" placeholder="" id="bedrooms" name="bedrooms" value="<?php echo $row['bed'];?>">
                             </div>
                         </div>
                         <!--  col-md-6   -->
@@ -539,7 +495,7 @@ if(isset($_POST['save'])){
 
                         <div class="col-md-10">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="" id="bathroom" name="bathroom">
+                                <input type="text" class="form-control" placeholder="" id="bathroom" name="bathroom" value="<?php echo $row['bath'];?>">
                             </div>
                         </div>
                         <!--  col-md-6   -->
@@ -555,62 +511,149 @@ if(isset($_POST['save'])){
 
                         <div class="col-md-10">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="" id="price" name="price">
+                                <input type="text" class="form-control" placeholder="" id="price" name="price" value="<?php echo $row['price'];?>">
                             </div>
                         </div>
                         <!--  col-md-6   -->
                     </div>
-        </div>
+                </div>
 
                 </form>
             </div>
-        </div>
-        <div class="row" id="imageslider" style="height: 25vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
-            <div class="col-md-6"><h4 style="margin-top: 15px;">Images</h4></div>
-            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-            <hr style="color:grey; opacity: .3; height: 1px; margin-top: -90px;">
-            <div class="owl-carousel owl-theme">
-                <div class="item"><h4>1</h4></div>
-                <div class="item"><h4>2</h4></div>
-                <div class="item"><h4>3</h4></div>
-                <div class="item"><h4>4</h4></div>
-                <div class="item"><h4>5</h4></div>
-                <div class="item"><h4>6</h4></div>
-                <div class="item"><h4>7</h4></div>
-                <div class="item"><h4>8</h4></div>
-                <div class="item"><h4>9</h4></div>
-                <div class="item"><h4>10</h4></div>
             </div>
-        </div>
-        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
-            <div class="col-md-6"><h4 style="margin-top: 15px;">Docs</h4></div>
-            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-            <hr style="color:grey; opacity: .3; height: 1px; margin-top: -40px;">
-            <div class="docs">
-                <div class="docsbox"></div>
-                <div class="docsbox"></div>
-                <div class="docsbox"></div>
-            </div>
-        </div>
-        <div class="row" style="height: 30vh; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
-            <div class="col-md-6"><h4 style="margin-top: 15px;">Property Details</h4></div>
-            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-            <hr style="color:grey; opacity: .3; height: 1px; ">
-            <form>
-                <input type="textarea" style= "width:100%;  height:25vh;">
-            </form>
-        </div>
-        <div class="endbtns" style="display: flex; height: 10vh; margin-top:30px;">
-            <button class="save" type="submit">Save</button>
-            <button class="cancel" type="submit">Cancel</button>
-        </div>
-    </div>
-    <!-- owl carousel library-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- JS link -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
-</body>
 
-</html>
+            <div class="container">
+                <div class="row" id="imageslider" style="height: 300px; margin-top: 10px; padding-left: 80px; padding-right: 80px; background-color: white;">
+                    <div class="col-md-6"><h4 style="margin-top: 15px;">Plan Image</h4></div>
+                    <!--            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>-->
+                    <hr style="color:grey; opacity: .3; height: 1px; margin-top: -36px;">
+
+                        <div class="col-xs-6 col-md-2 col-md-offset-1" style="margin-left: 50px">
+
+                                <img class="img-responsive" src="<?php echo $row['plan_image'];?>" height="130px" width="150px" />
+                        </div>
+
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row" id="imageslider" style="height: 300px; margin-top: 10px; padding-left: 80px; padding-right: 80px; background-color: white;">
+                    <div class="col-md-6"><h4 style="margin-top: 15px;">Images</h4></div>
+                    <!--            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>-->
+                    <hr style="color:grey; opacity: .3; height: 1px; margin-top: -36px;">
+                    <?php
+                        $idd = $row['id'];
+                    $queryd = "select * from property_images where p_id = $idd";
+                    $resultd = mysqli_query($con,$queryd);
+
+                    while($rowd = mysqli_fetch_assoc($resultd)){?>
+                    <div class="col-xs-6 col-md-2 col-md-offset-1" style="margin-left: 50px">
+                        <img class="img-responsive" src="<?php echo $rowd['image'];?>" height="130px" width="150px"/>
+                    </div>
+                    <?php
+                    }
+                    ?>
+
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row" id="imageslider" style="height: 300px; margin-top: 10px; padding-left: 80px; padding-right: 80px; background-color: white;">
+                    <div class="col-md-6"><h4 style="margin-top: 15px;">Docs</h4></div>
+                    <!--            <div class="col-md-6" id="addimgicon"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>-->
+                    <hr style="color:grey; opacity: .3; height: 1px; margin-top: -36px;">
+
+                    <?php
+                    $idd = $row['id'];
+                    $queryd = "select * from property_document where p_id = $idd";
+                    $resultd = mysqli_query($con,$queryd);
+
+                    while($rowd = mysqli_fetch_assoc($resultd)){?>
+                        <div class="col-xs-6 col-md-2 col-md-offset-1" style="margin-left: 50px">
+                            <a download="<?php echo $rowd['file'];?>" href="<?php echo $rowd['file'];?>" title="Attachment">
+                            <img class="img-responsive" src="imgs/pdf.jpeg" height="130px" width="150px" />
+                            </a>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row" style="height: 330px; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
+                    <div class="col-md-6"><h4 style="margin-top: 15px;">Property Details</h4></div>
+                    <hr style="color:grey; opacity: .3; height: 1px; ">
+                    <form>
+                        <input type="textarea" style= "width:100%;  height:160px;" value="<?php echo $row['description'];?>">
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row" style="height: 330px; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
+                    <div class="col-md-6"><h4 style="margin-top: 15px;">Property Address</h4></div>
+                    <hr style="color:grey; opacity: .3; height: 1px; ">
+                    <form>
+                        <input type="textarea" style= "width:100%;  height:160px;" value="<?php echo $row['address'];?>">
+                    </form>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row" style="height: 330px; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
+                    <div class="col-md-6"><h4 style="margin-top: 15px;">Location</h4></div>
+                    <hr style="color:grey; opacity: .3; height: 1px; ">
+                    <form>
+                        <input type="textarea" style= "width:100%;  height:160px;" value="<?php echo $row['location'];?>">
+                    </form>
+                </div>
+            </div>
+
+<!--            <div class="container">-->
+<!--                <div class="row" style="height: 330px; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">-->
+<!--                    <div class="col-md-6"><h4 style="margin-top: 15px;">Location</h4></div>-->
+<!--                    <hr style="color:grey; opacity: .3; height: 1px; ">-->
+<!---->
+<!--                    <div id="mapid"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="endbtns" style="display: flex; height: 10vh; margin-top:30px;margin-left:20%;">-->
+<!--                <button class="save" type="submit">Save</button>-->
+<!--                <button class="cancel" type="submit">Cancel</button>-->
+<!--            </div>-->
+            </div>
+            <!-- owl carousel library-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <!-- JS link -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+            <script src="index.js"></script>
+
+            <script>
+                $(document).ready(function(){
+
+                    var mymap = L.map('mapid').setView([51.505, -0.09], 13)
+
+// add the OpenStreetMap tiles
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        { subdomains: ['a', 'b', 'c'] })
+                        .addTo(mymap)
+                });
+
+
+            </script>
+            </body>
+
+            </html>
+    <?php
+        }
+    }else{
+       header("Location:home.php");
+    }
+
+    ?>
