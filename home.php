@@ -7,9 +7,9 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
 
     if(isset($_GET['name'])) {
         $name = $_GET['name'];
-        $query = "select property.*,analysis.* from property JOIN analysis ON analysis.p_id = property.id where address like '$name%'";
+        $query = "select property.*,analysis.* from property JOIN analysis ON analysis.p_id = property.id where address like '$name%' order by property.id desc";
     }else{
-        $query = "select property.*,analysis.* from property JOIN analysis ON analysis.p_id = property.id";
+        $query = "select property.*,analysis.* from property JOIN analysis ON analysis.p_id = property.id order by property.id desc";
     }
     $result = mysqli_query($con,$query);
 ?>
@@ -190,6 +190,32 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             transform: translate(-11px, 1px);
         }
 
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;}
 </style>
 
     <link rel="icon" type="image/x-icon" href="imgs/logo_2.png">
@@ -210,10 +236,15 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
                     <input type="text" placeholder="Search Tenant"><i class="fa-solid fa-magnifying-glass icon"></i> 
                 </div> 
                 <div class="col-md-2">
-                    <i class="fa-solid fa-bell new-icons"></i>
+                    <i class="fa-solid fa-bell new-icons" onclick="redirectToSection()"></i>
                     <i class="fa-solid fa-comment new-icons"></i>
                     <img src="imgs/profile.jpg" id="pro">
-                    <b><i class="fa-sharp fa-solid fa-angle-down new-icons"></i></b>
+                    <b><i class="fa-sharp fa-solid fa-angle-down new-icons dropbtn" onclick="myFunction()"></i></b>
+
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="leads.php">Leads</a>
+                        <a href="logout.php">Logout</a>
+                    </div>
                 </div>
         </div>
         <div class="row">
@@ -227,7 +258,7 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
                     <li><a href="">Tenants</a></li>
                     <li><a href="">Suppliers</a></li>
                     <li><a href="">Maintenance</a></li>
-                    <li><a href="">Updates</a></li>
+                    <li><a href="updates.php">Updates</a></li>
                 </ul>
             </nav>
         </div>
@@ -275,11 +306,38 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
 <!-- JS link -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
+
+
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 <script>
     function search(ele) {
         if(event.key === 'Enter') {
             window.location.replace('home.php?name='+ele.value);
         }
+    }
+
+    function redirectToSection(){
+        window.location.replace(`notification.php`);
     }
 </script>
 <?php

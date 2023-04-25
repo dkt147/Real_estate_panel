@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="db290801-c578-43d9-8aed-52b1ecda8c1e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/_update_property.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leads.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notification.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/updates.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/.idea/Real_estate_panel.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/_create_property.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/_create_property.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/conn.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/conn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/images_uploads/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/images_uploads/4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/images_uploads/5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/images_uploads/5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_create_property.php" beforeDir="false" afterPath="$PROJECT_DIR$/_create_property.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conn.php" beforeDir="false" afterPath="$PROJECT_DIR$/conn.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create_property.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_property.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_uploads/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_uploads/4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_uploads/5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_uploads/5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/property.php" beforeDir="false" afterPath="$PROJECT_DIR$/property.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style2.css" beforeDir="false" afterPath="$PROJECT_DIR$/style2.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LTRb8ySgbLqEQ5Sq5rhOP1uFBK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/laragon/www/Real_estate_panel",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\Real_estate_panel" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="db290801-c578-43d9-8aed-52b1ecda8c1e" name="Changes" comment="" />
+      <created>1675893155451</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675893155451</updated>
+      <workItem from="1675893157318" duration="4965000" />
+      <workItem from="1676040096751" duration="6120000" />
+      <workItem from="1676576697714" duration="5882000" />
+      <workItem from="1676757592491" duration="16097000" />
+      <workItem from="1676891875682" duration="313000" />
+      <workItem from="1676914367120" duration="2667000" />
+      <workItem from="1677014056318" duration="594000" />
+      <workItem from="1677138781074" duration="912000" />
+      <workItem from="1677473387549" duration="3301000" />
+      <workItem from="1678011567813" duration="7390000" />
+      <workItem from="1678089900463" duration="2349000" />
+      <workItem from="1678122186116" duration="2298000" />
+      <workItem from="1682437464875" duration="2209000" />
+      <workItem from="1682452242454" duration="9226000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

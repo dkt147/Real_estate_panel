@@ -14,10 +14,10 @@
             <p class="error"><?php echo $_GET['error']; ?></p>
         <?php } ?>
         <label>Email</label>
-        <input type="text" name="email" placeholder="Enter your email"><br>
+        <input required type="text" name="email" placeholder="Enter your email"><br>
 
         <label>Password</label>
-        <input type="text" name="password" placeholder="Enter your password"><br>
+        <input required type="password" name="password" placeholder="Enter your password"><br>
 
         <button type="submit">Login</button> 
     </form>

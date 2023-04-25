@@ -1,4 +1,17 @@
-
+<?php
+if(isset($_GET['error'])){
+    $error = $_GET['error'];
+    if($error == 0){
+        echo "<script>alert('Property Plan Image is not Selected!')</script>";
+    }
+    if($error == 1){
+        echo "<script>alert('Property Images are not Selected!')</script>";
+    }
+    if($error == 2){
+        echo "<script>alert('Property Documents are not Selected!')</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -308,7 +321,7 @@
                 <li><a href="">Tenants</a></li>
                 <li><a href="">Suppliers</a></li>
                 <li><a href="">Maintenance</a></li>
-                <li><a href="">Updates</a></li>
+                <li><a href="updates.php">Updates</a></li>
             </ul>
         </nav>
     </div>
@@ -455,7 +468,18 @@
             <div class="col-md-10">
                 <div class="form-group">
                     <select class="form-control" name="type">
-                        <option class="form-control" value="buy">Buy</option>
+                        <?php
+                        include 'conn.php';
+                            $query = "SELECT * FROM property_type";
+                            $result = mysqli_query($con,$query);
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_assoc($result)){
+                                    ?>
+                                    <option class="form-control" value="<?php echo $row['id'];?>"><?php echo $row['name'];?></option>
+                                    <?php
+                                }
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
