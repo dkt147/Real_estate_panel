@@ -407,13 +407,13 @@ if(isset($_GET['id'])) {
             <div class="row nav py-5" style="">
                 <nav>
                     <ul>
-                        <li><a href="property.php"  style="
-            color: #4962db;
-            border-bottom: 3px solid #4962db;">Property Details</a></li>
-                        <li><a href="maintenance.php?id=<?php echo $_GET['id'];?>">Maintenance</a></li>
+                        <li><a href="property.php">Property Details</a></li>
+                        <li><a href="">Maintenance</a></li>
                         <li><a href="contractor.php">Contractor</a></li>
-                        <li><a href="leasing.php?id=<?php echo $_GET['id'];?>">Leasing</a></li>
-                        <li><a href="eviction.php?id=<?php echo $_GET['id'];?>">Evication</a></li>
+                        <li><a href="">Leasing</a></li>
+                        <li><a href="eviction.php?id=<?php echo $_GET['id'];?>"  style="
+            color: #4962db;
+            border-bottom: 3px solid #4962db;">Evication</a></li>
                         <li><a href="docs.php?id=<?php echo $_GET['id'];?>" >Docs</a></li>
                         <li><a href="images.php">Images</a></li>
                         <li><a href="renovation.php">Renovation</a></li>
@@ -424,7 +424,8 @@ if(isset($_GET['id'])) {
             <hr style="color:grey; opacity: .3; height: 1px; margin-top: -30px;">
             <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;
     padding-top: 18px;">
-                <div class="col-md-6"><h4 style="margin-top: 5px;">Property Details</h4></div>
+                <div class="col-md-6"><h4 style="margin-top: 5px;font-size: 30px">Evication</h4></div>
+                <div class="col-md-6" id="addimgicon" class="addicon" onclick="uploadplaneImage()" ><img src="asset/gallery.png" height="50px"><img src="asset/attachment.png" height="50px"><img src="asset/plus.png" height="50px"></div>
 
 
                 <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
@@ -434,16 +435,139 @@ if(isset($_GET['id'])) {
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="first">Status:</label>
+                                    <label for="first">Tenant Name:</label>
                                 </div>
                             </div>
                             <!--  col-md-6   -->
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="radio" name="contact-preference" id="contact-preference" <?php if($row['status'] == 'active'){?> checked <?php };?> value="am"  style="width: 104px;height: 20px;" disabled><label>Active</label>
-                                    <input type="radio" name="contact-preference" id="contact-preference" <?php if($row['status'] == 'non-active'){?> checked <?php };?> value="pm" style="width: 104px;height: 20px;" disabled><label>Non-Active</label>
-                                    <input type="radio" name="contact-preference" id="contact-preference" <?php if($row['status'] == 'sold-out'){?> checked <?php };?> value="pm" style="width: 104px;height: 20px;" disabled><label>Sold-Out</label>
+                                    <input type="radio" name="contact-preference" id="contact-preference" checked  value="am"  style="width: 104px;height: 20px;" ><label>Yes</label>
+                                    <input type="radio" name="contact-preference" id="contact-preference" value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">Field:</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="radio" name="contact-preference" id="contact-preference"  checked  value="am"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="contact-preference" id="contact-preference"  value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">Published:</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="radio" name="contact-preference" id="contact-preference" checked  value="am"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="contact-preference" id="contact-preference"  value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">In Court Date:</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="radio" name="contact-preference" id="contact-preference" checked  value="am"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="contact-preference" id="contact-preference"  value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">Show Note:</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="radio" name="contact-preference" id="contact-preference" checked value="am"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="contact-preference" id="contact-preference"  value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">Outcome & State:</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="Test 1" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">Is Removed?</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="radio" name="contact-preference" id="contact-preference" checked  value="am"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="contact-preference" id="contact-preference"  value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">Court Date:</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="08/04/2023" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="first">Note:</label>
+                                </div>
+                            </div>
+                            <!--  col-md-6   -->
+
+                            <div class="col-md-10">
+                                <div class="form-group" style="margin-bottom: 20px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="Demo Note 1" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
 
                                 </div>
                             </div>
@@ -451,291 +575,12 @@ if(isset($_GET['id'])) {
                         <!--  col-md-6   -->
                 </div>
 
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="first">Year:</label>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
 
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="" id="year" name="year" value="<?php echo $row['year'];?>">
-                            <input type="hidden" class="form-control" placeholder="" id="property_id" name="property_id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : 0;?>">
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="first">Property Type:</label>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <select class="form-control">
-                                <option class="form-control">Buy</option>
-                                <option class="form-control">Auction For Buy</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="first">Branch:</label>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="" id="branch" name="branch" value="Main" disabled>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="first">No of Bedrooms:</label>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="" id="bedrooms" name="bedrooms" value="<?php echo $row['bed'];?>">
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-                </div>
-
-                <div class="row">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="first">No of Bathroom:</label>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="" id="bathroom" name="bathroom" value="<?php echo $row['bath'];?>">
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-                </div>
-
-                <div class="row" style="margin-bottom: 50px">
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="first">Price:</label>
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="" id="price" name="price" value="<?php echo $row['price'];?>">
-                        </div>
-                    </div>
-                    <!--  col-md-6   -->
-                </div>
             </div>
+            <br>
+            <br><br><br>
 
         </div>
-        </div>
-
-        <div class="container">
-            <div class="row" id="imageslider" style="height: 300px; margin-top: 10px; padding-left: 80px; padding-right: 80px; background-color: white;">
-                <div class="col-md-6"><h4 style="margin-top: 15px;">Property Plan Image</h4></div>
-                <div class="col-md-6" id="addimgicon" class="addicon" onclick="uploadplaneImage()" ><img src="imgs/icons8-plus-math-24.png" id="addicon" class="addicon" style="margin-top: 15px;"></div>
-                <hr style="color:grey; opacity: .3; height: 1px; margin-top: -36px;">
-                <input id="file-input" type="file" name="plan_image" style="display: none"/>
-                <div class="col-xs-6 col-md-2 col-md-offset-1" style="margin-left: 50px">
-
-                    <img class="img-responsive" src="<?php echo $row['plan_image'];?>" height="130px" width="150px" />
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!--Carousel Images-->
-        <div class="container">
-            <div class="row" id="imageslider" style="height: 300px; margin-top: 10px; padding-left: 80px; padding-right: 80px; background-color: white;">
-                <div class="col-md-6"><h4 style="margin-top: 15px;">Property Images</h4></div>
-
-                <div class="col-md-6" id="addimgicon" onclick="uploadImage()"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-                <hr style="color:grey; opacity: .3; height: 1px; margin-top: 8px;">
-
-                <input id="image-input" type="file" name="images[]" multiple  style="display: none"/>
-
-                <div class="carousel slide" id="myCarousel2" data-ride="carousel" data-interval="2000" data-pause="hover">
-
-                    <div class="carousel-inner" style="margin-top:10px">
-
-                        <?php
-                        $idd = $_GET['id'];
-                        $queryd = "select * from property_images where p_id = $idd";
-                        $resultd = mysqli_query($con,$queryd);
-                        $counter = 0;
-                        while($rowd = mysqli_fetch_assoc($resultd)){
-                            $counter = $counter + 1;
-
-                            if($counter == 1){?>
-
-                                <div class="item active">
-
-                                    <div class="col-xs-3"><img src="<?php echo $rowd['image'];?>" class="img-responsive" style="height:180px!important"></div>
-                                </div>
-
-                                <?php
-
-                            }else{?>
-                                <div class="item">
-                                    <div class="col-xs-3"><img src="<?php echo $rowd['image'];?>" class="img-responsive" style="height:180px!important"></div>
-                                </div>
-
-                                <?php
-                            }
-                        }
-                        ?>
-
-                    </div>
-                    <a class="left carousel-control" href="#myCarousel2" data-slide="prev" style="
-    background: transparent;
-    color: black"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                    <a class="right carousel-control" href="#myCarousel2" data-slide="next" style="
-    background: transparent;
-    color: black"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                </div>
-            </div>
-            <!--Carousel Images End-->
-
-
-            <!--Carousel Docs-->
-            <div class="container">
-                <div class="row" id="imageslider" style="height: 300px; margin-top: 10px; padding-left: 80px; padding-right: 80px; background-color: white;">
-                    <div class="col-md-6"><h4 style="margin-top: 15px;">Property Documents</h4></div>
-
-                    <div class="col-md-6" id="addimgicon" onclick="uploadDocs()"><img src="imgs/icons8-plus-math-24.png" id="addicon" style="margin-top: 15px;"></div>
-                    <hr style="color:grey; opacity: .3; height: 1px; margin-top: 8px;">
-
-                    <input id="doc-input" type="file" name="docs[]" multiple  style="display: none"/>
-
-                    <div class="carousel slide" id="myCarousel3" data-ride="carousel" data-interval="2000" data-pause="hover">
-
-                        <div class="carousel-inner" style="margin-top:10px">
-
-                            <?php
-                            $idd = $_GET['id'];
-                            $queryd = "select * from property_document where p_id = $idd";
-                            $resultd = mysqli_query($con,$queryd);
-                            $counter = 0;
-                            while($rowd = mysqli_fetch_assoc($resultd)){
-                                $counter = $counter + 1;
-
-                                if($counter == 1){?>
-
-                                    <div class="item active">
-
-                                        <div class="col-xs-3"> <a download="<?php echo $rowd['file'];?>" href="<?php echo $rowd['file'];?>" title="Attachment"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:180px!important"></a></div>
-                                    </div>
-
-                                    <?php
-
-                                }else{?>
-                                    <div class="item">
-                                        <div class="col-xs-3"> <a download="<?php echo $rowd['file'];?>" href="<?php echo $rowd['file'];?>" title="Attachment"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:180px!important"></a></div>
-                                    </div>
-
-                                    <?php
-                                }
-                            }
-                            ?>
-
-                        </div>
-                        <a class="left carousel-control" href="#myCarousel3" data-slide="prev" style="
-    background: transparent;
-    color: black"><i class="glyphicon glyphicon-chevron-left"></i></a>
-                        <a class="right carousel-control" href="#myCarousel3" data-slide="next" style="
-    background: transparent;
-    color: black"><i class="glyphicon glyphicon-chevron-right"></i></a>
-                    </div>
-                </div>
-                <!--Carousel Docs End-->
-
-
-            </div>
-
-            <div class="container">
-                <div class="row" style="height: 330px; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
-                    <div class="col-md-6"><h4 style="margin-top: 15px;">Property Details</h4></div>
-                    <hr style="color:grey; opacity: .3; height: 1px; ">
-                    <input type="textarea" style= "width:100%;  height:160px;" value="<?php echo $row['description'];?>" name="description">
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row" style="height: 330px; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
-                    <div class="col-md-6"><h4 style="margin-top: 15px;">Property Address</h4></div>
-                    <hr style="color:grey; opacity: .3; height: 1px; ">
-                    <input type="textarea" style= "width:100%;  height:160px;" value="<?php echo $row['address'];?>" name="address">
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row" style="height: 330px; margin-top: 30px; padding-left: 80px; padding-right: 80px; background-color: white;">
-                    <div class="col-md-6"><h4 style="margin-top: 15px;">Location</h4></div>
-                    <hr style="color:grey; opacity: .3; height: 1px; ">
-                    <input type="textarea" style= "width:100%;  height:160px;" value="<?php echo $row['location'];?>" name="url">
-                </div>
-            </div>
-
-            <div class="endbtns" style="display: flex; height: 10vh; margin-top:30px;margin-left:20%;">
-                <button class="save" type="submit" name="create">Save</button>
-                <button class="cancel" type="submit" onclick="window.location.href='home.php'">Cancel</button>
-            </div>
-        </div>
-        </form>
-
-
-
-        <!-- Investor Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    </div>
-                    <div class="modal-body">
-                       <form action="add_investor.php" method="POST">
-                           <label>Investor Name</label>
-                           <input class="form-control" type="hidden" name="id" id="investor_name" placeholder="Investor Name" value="<?php echo $_GET['id'];?>">
-                           <input class="form-control" type="text" name="name" id="investor_name" placeholder="Investor Name">
-                           <label>Investor Email</label>
-                           <input class="form-control" type="email" name="email" id="investor_email" placeholder="Investor Email">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary"  id="add-investor">Add Investor</button>
-                    </div>
-                    </form>
-
-                </div>
-            </div>
         </div>
 
         <!-- owl carousel library-->

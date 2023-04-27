@@ -2,32 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db290801-c578-43d9-8aed-52b1ecda8c1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/_update_property.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/leads.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/updates.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/.idea/Real_estate_panel.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/_create_property.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/_create_property.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/conn.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/conn.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/images_uploads/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/images_uploads/4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/images_uploads/5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/images_uploads/5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Admin/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/Admin/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_create_property.php" beforeDir="false" afterPath="$PROJECT_DIR$/_create_property.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conn.php" beforeDir="false" afterPath="$PROJECT_DIR$/conn.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create_property.php" beforeDir="false" afterPath="$PROJECT_DIR$/create_property.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/add_investor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eviction.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/leasing.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/maintenance.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/suppliers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Admin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/vuesax-bold-attach-circle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/vuesax-bold-gallery.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/asset/vuesax-linear-add-circle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat.php" beforeDir="false" afterPath="$PROJECT_DIR$/chat.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs.php" beforeDir="false" afterPath="$PROJECT_DIR$/docs.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images_uploads/4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_uploads/4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images_uploads/5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_uploads/5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/property.php" beforeDir="false" afterPath="$PROJECT_DIR$/property.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style2.css" beforeDir="false" afterPath="$PROJECT_DIR$/style2.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,16 +37,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/laragon/www/Real_estate_panel",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/laragon/www/Real_estate_panel&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\laragon\www\Real_estate_panel" />
@@ -85,7 +73,11 @@
       <workItem from="1678089900463" duration="2349000" />
       <workItem from="1678122186116" duration="2298000" />
       <workItem from="1682437464875" duration="2209000" />
-      <workItem from="1682452242454" duration="9226000" />
+      <workItem from="1682452242454" duration="9923000" />
+      <workItem from="1682493453572" duration="1052000" />
+      <workItem from="1682506541978" duration="2655000" />
+      <workItem from="1682607525040" duration="1184000" />
+      <workItem from="1682623239002" duration="5866000" />
     </task>
     <servers />
   </component>

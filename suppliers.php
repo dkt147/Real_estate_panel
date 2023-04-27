@@ -251,55 +251,20 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
             <nav>
                 <ul>
                     <li><a href="home.php" >Dashboard</a></li>
-                    <li><a href="home.php" style="
-            color: #4962db;
-            border-bottom: 3px solid #4962db;">Properties</a></li>
+                    <li><a href="home.php" >Properties</a></li>
                     <li><a href="">Investors</a></li>
                     <li><a href="">Tenants</a></li>
-                    <li><a href="suppliers.php">Suppliers</a></li>
+                    <li><a href="suppliers.php" style="
+            color: #4962db;
+            border-bottom: 3px solid #4962db;">Suppliers</a></li>
                     <li><a href="">Maintenance</a></li>
                     <li><a href="updates.php">Updates</a></li>
                 </ul>
             </nav>
         </div>
     </div>
-    <div class="container-fluid" style="height: 60vh;margin-top:20px">
-        <img src="imgs/main_banner.png" class="img-fluid" style="width: 100%; height: 85%; object-fit: cover;">
-    </div>
-    <div class="container py-5">
-        <div class="row" >
-            <div class="col-md-6"><h4><?php echo mysqli_num_rows($result); ?> Deals</h4></div>
-            <div class="col-md-6" id="addimgicon"><a href="create_property.php"><img src="imgs/icons8-plus-math-24.png" id="addicon" ></a></div>
-        </div>
-        <hr style="color:grey; opacity: .3; height: 1px;">
-        <div class="row">
-                <?php while($rows = mysqli_fetch_assoc($result)){ ?>
 
-                    <div class="card" style="width: 25rem;height: 27rem;padding: 1px" onclick="window.location='property.php?id=<?php echo $rows['id']?>'">
-                        <img class="card-img-top" src="imgs/1.jpg" alt="Card image cap" style="border-radius:border-radius: 20px;">
-                        <button class="btn btn-default">$ <?php echo sprintf("%.2f",$rows['price'])?></button>
-                                                <p class="loremtxt"><?php echo "<b>".$rows['address']."</b><br>".$rows['description']; ?></p>
-                        <div class="card-body">
 
-                                                <div class="cardvector">
-                                                    <img id="vector" src="imgs/dollar.png">
-                                                    <img id="vector" src="imgs/yeild.png">
-                                                    <img id="vector" src="imgs/arrow.png">
-                                                    <img id="vector" src="imgs/calender.png">
-                                                </div>
-
-                            <div class="des">
-                                                        <p>ROI<br><?php echo $rows['roi']?> %</p>
-                                                        <p style="margin-left: 24px;">Yeild<br>&nbsp;&nbsp;<?php echo $rows['yiels']?> %</p>
-                                                        <p style="margin-left: 18px;">Return<br>$ <?php echo $rows['return_amount']?></p>
-                                                        <p style="margin-inline: 10px;">Month<br>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $rows['month']?></p>
-                                                    </div>
-
-                        </div>
-                    </div>
-
-                <?php } ?>
-        </div>
 
     </div>
 </body>
@@ -308,6 +273,63 @@ if(isset($_SESSION['id']) && isset($_SESSION['name'])){
 </html>
 
 
+    <script>
+        $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+
+        $("#profile-img").click(function() {
+            $("#status-options").toggleClass("active");
+        });
+
+        $(".expand-button").click(function() {
+            $("#profile").toggleClass("expanded");
+            $("#contacts").toggleClass("expanded");
+        });
+
+        $("#status-options ul li").click(function() {
+            $("#profile-img").removeClass();
+            $("#status-online").removeClass("active");
+            $("#status-away").removeClass("active");
+            $("#status-busy").removeClass("active");
+            $("#status-offline").removeClass("active");
+            $(this).addClass("active");
+
+            if($("#status-online").hasClass("active")) {
+                $("#profile-img").addClass("online");
+            } else if ($("#status-away").hasClass("active")) {
+                $("#profile-img").addClass("away");
+            } else if ($("#status-busy").hasClass("active")) {
+                $("#profile-img").addClass("busy");
+            } else if ($("#status-offline").hasClass("active")) {
+                $("#profile-img").addClass("offline");
+            } else {
+                $("#profile-img").removeClass();
+            };
+
+            $("#status-options").removeClass("active");
+        });
+
+        function newMessage() {
+            message = $(".message-input input").val();
+            if($.trim(message) == '') {
+                return false;
+            }
+            $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+            $('.message-input input').val(null);
+            $('.contact.active .preview').html('<span>You: </span>' + message);
+            $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+        };
+
+        $('.submit').click(function() {
+            newMessage();
+        });
+
+        $(window).on('keydown', function(e) {
+            if (e.which == 13) {
+                newMessage();
+                return false;
+            }
+        });
+    </script>
     <script>
         /* When the user clicks on the button,
         toggle between hiding and showing the dropdown content */
