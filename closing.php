@@ -410,10 +410,10 @@ if(isset($_GET['id'])) {
                         <li><a href="property.php"  >Property Details</a></li>
                         <li><a href="maintenance.php?id=<?php echo $_GET['id'];?>" >Maintenance</a></li>
                         <li><a href="contractor.php">Contractor</a></li>
-                        <li><a href="leasing.php?id=<?php echo $_GET['id'];?>" style="
+                        <li><a href="leasing.php?id=<?php echo $_GET['id'];?>" >Leasing</a></li>
+                        <li><a href="closing.php?id=<?php echo $_GET['id'];?>" style="
             color: #4962db;
-            border-bottom: 3px solid #4962db;">Leasing</a></li>
-                        <li><a href="closing.php?id=<?php echo $_GET['id'];?>">Closing</a></li>
+            border-bottom: 3px solid #4962db;">Closing</a></li>
                         <li><a href="eviction.php?id=<?php echo $_GET['id'];?>">Evication</a></li>
                         <li><a href="docs.php?id=<?php echo $_GET['id'];?>" >Docs</a></li>
                         <!--                        <li><a href="images.php">Images</a></li>-->
@@ -425,7 +425,7 @@ if(isset($_GET['id'])) {
             <hr style="color:grey; opacity: .3; height: 1px; margin-top: -30px;">
             <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;
     padding-top: 18px;">
-                <div class="col-md-6"><h4 style="margin-top: 5px;font-size: 30px">Leasing</h4></div>
+                <div class="col-md-6"><h4 style="margin-top: 5px;font-size: 30px">Closing</h4></div>
                 <div class="col-md-6" id="addimgicon" class="addicon" onclick="uploadplaneImage()" >
                     <img src="asset/attachment.png" height="50px">
                 </div>
@@ -435,149 +435,46 @@ if(isset($_GET['id'])) {
                 <?php
 
                 $idd = $_GET['id'];
-                $queryd = "select * from leasing where p_id = $idd";
+                $queryd = "select * from closing where p_id = $idd";
                 $resultd = mysqli_query($con,$queryd);
                 $rowd = mysqli_fetch_assoc($resultd);
                 ?>
                 <div class="container">
-                    <form action="_add_leasing.php" method="POST" enctype="multipart/form-data">
+                    <form action="_add_closing.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="first">Ready For Rent:</label>
+                                    <label for="first">Is PWD Open? </label>
                                 </div>
                             </div>
                             <!--  col-md-6   -->
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="radio" name="is_ready_for_rent_1" id="contact-preference11" <?php echo $rowd['is_ready_for_rent'] == 1 ? "checked" : "";?>   value="1"  style="width: 104px;height: 20px;" ><label>Yes</label>
-                                    <input type="radio" name="is_ready_for_rent_1" id="contact-preference12" <?php echo $rowd['is_ready_for_rent'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
+                                    <input type="radio" name="is_pwd_open" id="contact-preference11" <?php echo $rowd['is_pwd_open'] == 1 ? "checked" : "";?>   value="1"  style="width: 104px;height: 20px;" ><label>Yes</label>
+                                    <input type="radio" name="is_pwd_open" id="contact-preference12" <?php echo $rowd['is_pwd_open'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
 
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="first">Start Date:</label>
+                                    <label for="first">Is Show Note?</label>
                                 </div>
                             </div>
                             <!--  col-md-6   -->
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="start_date" value="<?php echo $rowd['start_date'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="radio" name="show_note" id="contact-preference21"  <?php echo $rowd['show_note'] == 1 ? "checked" : "";?>  value="1"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="show_note" id="contact-preference22"  <?php echo $rowd['show_note'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
 
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first">Move in Date:</label>
-                                </div>
-                            </div>
-                            <!--  col-md-6   -->
 
-                            <div class="col-md-10">
-                                <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="move_in_date" value="<?php echo $rowd['move_in_date'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first">Est. Rent Date:</label>
-                                </div>
-                            </div>
-                            <!--  col-md-6   -->
-
-                            <div class="col-md-10">
-                                <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="rent_date" value="<?php echo $rowd['rent_date'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first">Show Note:</label>
-                                </div>
-                            </div>
-                            <!--  col-md-6   -->
-
-                            <div class="col-md-10">
-                                <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="show_note" value="<?php echo $rowd['show_note'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first">Lease:</label>
-                                </div>
-                            </div>
-                            <!--  col-md-6   -->
-
-                            <div class="col-md-10">
-                                <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="lease" value="<?php echo $rowd['lease'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first">Listing on Facebook?</label>
-                                </div>
-                            </div>
-                            <!--  col-md-6   -->
-
-                            <div class="col-md-10">
-                                <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="radio" name="is_listing_on_facebook_1" id="contact-preference21"  <?php echo $rowd['is_listing_on_facebook'] == 1 ? "checked" : "";?>  value="1"  style="width: 104px;height: 20px;"  ><label>Yes</label>
-                                    <input type="radio" name="is_listing_on_facebook_1" id="contact-preference22"  <?php echo $rowd['is_listing_on_facebook'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first">Listing on CraigsList?</label>
-                                </div>
-                            </div>
-                            <!--  col-md-6   -->
-
-                            <div class="col-md-10">
-                                <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="radio" name="is_listing_on_craigslist_1" id="contact-preference31" <?php echo $rowd['is_listing_on_craigslist'] == 1 ? "checked" : "";?>  value="1"  style="width: 104px;height: 20px;"  ><label>Yes</label>
-                                    <input type="radio" name="is_listing_on_craigslist_1" id="contact-preference32" <?php echo $rowd['is_listing_on_craigslist'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first">Application:</label>
-                                </div>
-                            </div>
-                            <!--  col-md-6   -->
-
-                            <div class="col-md-10">
-                                <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="application" value="<?php echo $rowd['application'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
-
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
