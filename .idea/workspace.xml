@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db290801-c578-43d9-8aed-52b1ecda8c1e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/_add_closing.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/closing.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/leasing.php" beforeDir="false" afterPath="$PROJECT_DIR$/leasing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leads.php" beforeDir="false" afterPath="$PROJECT_DIR$/leads.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/updates.php" beforeDir="false" afterPath="$PROJECT_DIR$/updates.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,7 @@
       <workItem from="1683177472513" duration="631000" />
       <workItem from="1683186104852" duration="1251000" />
       <workItem from="1683614147102" duration="7286000" />
-      <workItem from="1683644585113" duration="9099000" />
+      <workItem from="1683644585113" duration="9495000" />
     </task>
     <servers />
   </component>

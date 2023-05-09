@@ -356,6 +356,7 @@ include 'conn.php';
                 <th >Email</th>
                 <th >Phone</th>
                 <th >Bid</th>
+                <th >Chat</th>
             </tr>
             </thead>
             <tbody>
@@ -372,6 +373,8 @@ include 'conn.php';
                     <td><?php echo $row['email'];?></td>
                     <td><?php echo $row['phone'];?></td>
                     <td><?php echo "$ ".$row['amount'];?></td>
+                    <td onclick="redirectToChat(<?php echo $row['uu_id'];?>,<?php echo "'".$row['name']."'";?>)"><i class="fa fa-message"></i></td>
+
                 </tr>
                 <?php
             }
@@ -425,6 +428,10 @@ include 'conn.php';
         $(".owl-stage").removeAttr("style");
     });
 
+    function redirectToChat(id,name){
+
+        window.location.replace(`chat.php?id=${id}&search=${name}`);
+    }
 
     $('.carousel .item').each(function(){
         var next = $(this).next();

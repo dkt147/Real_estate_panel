@@ -415,6 +415,7 @@ include 'conn.php';
                         <th >Property</th>
                         <th >Investor Name</th>
                         <th >Date</th>
+                        <th >Chat</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -452,11 +453,12 @@ include 'conn.php';
                             $rr = "style='background-color:#ff7878;'";
                         }
                         ?>
-                    <tr <?php echo $rr;?> onclick="redirectToSection(<?php echo $row['pp_id'];?>,<?php echo "'".$row['section']."'";?>)">
-                        <th><?php echo $row['section'];?></th>
-                        <td><?php echo $row['address'];?></td>
-                        <td><?php echo $row['name'];?></td>
-                        <td><?php echo $row['created_at'];?></td>
+                    <tr <?php echo $rr;?> >
+                        <th onclick="redirectToSection(<?php echo $row['pp_id'];?>,<?php echo "'".$row['section']."'";?>)"><?php echo $row['section'];?></th>
+                        <td onclick="redirectToSection(<?php echo $row['pp_id'];?>,<?php echo "'".$row['section']."'";?>)"><?php echo $row['address'];?></td>
+                        <td onclick="redirectToSection(<?php echo $row['pp_id'];?>,<?php echo "'".$row['section']."'";?>)"><?php echo $row['name'];?></td>
+                        <td onclick="redirectToSection(<?php echo $row['pp_id'];?>,<?php echo "'".$row['section']."'";?>)"><?php echo $row['created_at'];?></td>
+                        <td onclick="redirectToChat(<?php echo $row['i_id'];?>,<?php echo "'".$row['name']."'";?>)"><i class="fa fa-message"></i></td>
                     </tr>
                     <?php
                     }
@@ -550,6 +552,11 @@ include 'conn.php';
             function uploadDocs() {
                 console.log(1)
                 $('#doc-input').trigger('click');
+            }
+
+            function redirectToChat(id,name){
+
+                window.location.replace(`chat.php?id=${id}&search=${name}`);
             }
 
             function redirectToSection(id,type){
