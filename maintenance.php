@@ -407,13 +407,13 @@ include 'conn.php';
                 <nav>
                     <ul>
                         <li><a href="property.php" >Property Details</a></li>
-                        <li><a href="">Maintenance</a></li>
+                        <li><a href="maintenance.php" style="
+            color: #4962db;
+            border-bottom: 3px solid #4962db;">Maintenance</a></li>
                         <li><a href="contractor.php">Contractor</a></li>
                         <li><a href="">Leasing</a></li>
                         <li><a href="">Evication</a></li>
-                        <li><a href="docs.php" style="
-            color: #4962db;
-            border-bottom: 3px solid #4962db;">Docs</a></li>
+                        <li><a href="docs.php" >Docs</a></li>
                         <li><a href="images.php">Images</a></li>
                         <li><a href="renovation.php">Renovation</a></li>
                         <li><a href="marketing.php">Marketing</a></li>

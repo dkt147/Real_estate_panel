@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
     <style>
@@ -693,158 +696,116 @@
     <div id="sidepanel">
         <div id="search">
             <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-            <input type="text" placeholder="Search contacts..." />
+            <input type="text" placeholder="Search contacts..." id="searchUser" />
         </div>
         <div id="contacts">
             <ul>
-                <li class="contact">
+                <?php
+                 include 'conn.php';
+                 $search = isset($_GET['search']) ? $_GET['search'] : NULL;
+
+                 if($search == NULL){
+                 $sql = "SELECT `thread_message`.`user_id`, COUNT(*) as `message_count`, `users`.`name`
+                FROM `thread_message`
+                JOIN `users` ON `thread_message`.`user_id` = `users`.`id`
+                GROUP BY `thread_message`.`user_id`, `users`.`name`";
+                 }else{
+                     $sql = "SELECT `thread_message`.`user_id`, COUNT(*) as `message_count`, `users`.`name`
+                FROM `thread_message`
+                JOIN `users` ON `thread_message`.`user_id` = `users`.`id`
+                WHERE `users`.`name` like '$search%'
+                GROUP BY `thread_message`.`user_id`, `users`.`name`";
+                 }
+
+        $query = mysqli_query($con,$sql);
+        while($row = mysqli_fetch_assoc($query)){
+
+?>
+                <li class="contact" onclick="openUserChat(<?php echo $row['user_id'];?>)">
                     <div class="wrap">
                         <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
                         <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
+                            <p class="name"><?php echo $row['name'];?></p>
+                            <p class="preview"><?php
+                                $user_id = $row['user_id'];
+                                $sql2 = "SELECT * FROM `thread_message` where user_id = $user_id order by id desc";
+                                $query2 = mysqli_query($con,$sql2);
+                                $row2 = mysqli_fetch_assoc($query2);
+                                echo $row2['message'];
+                                ?></p>
+                            <p class="date"><?php  echo $row2['created_at'];?></p>
                         </div>
                     </div>
                 </li>
                 <hr>
-                <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr> <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr> <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr> <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr> <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr> <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr> <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr> <li class="contact">
-                    <div class="wrap">
-                        <img src="http://emilcarlsson.se/assets/louislitt.png" alt="" />
-                        <div class="meta">
-                            <p class="name">Louis Litt</p>
-                            <p class="preview">You just got LITT up, Mike.</p>
-                            <p class="date">Sep 20, 2015</p>
-                        </div>
-                    </div>
-                </li>
-                <hr>
+
+                <?php
+                }
+                ?>
             </ul>
         </div>
         <div id="bottom-bar">
         </div>
     </div>
+
+    <?php
+    include 'conn.php';
+    $user_id = isset($_GET['id']) ? $_GET['id'] : 0;
+    if($user_id != 0){
+
+
+    ?>
     <div class="content">
         <div class="messages">
             <ul>
+                <?php
+                $sql3 = "SELECT * FROM thread_message where user_id = $user_id or to_user = $user_id";
+                $query3 = mysqli_query($con,$sql3);
+                while($row3 = mysqli_fetch_assoc($query3)){
+                    if($row3['user_id'] == $user_id){
+
+                ?>
                 <li class="sent">
                     <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                    <p><?php echo $row3['message']?></p>
                 </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>When you're backed against the wall, break the god damn thing down.</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>Excuses don't win championships.</p>
-                </li>
-                <li class="sent">
-                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>Oh yeah, did Michael Jordan tell you that?</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>No, I told him that.</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>What are your choices when someone puts a gun to your head?</p>
-                </li>
-                <li class="sent">
-                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>What are you talking about? You do what they say or they shoot you.</p>
-                </li>
-                <li class="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                </li>
+                <?php
+                }else{?>
+                        <li class="replies">
+                            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+                            <p><?php echo $row3['message']?></p>
+                        </li>
+                    <?php
+                    }
+                }
+
+                ?>
+
             </ul>
         </div>
         <div class="message-input">
             <div class="wrap">
                 <input type="text" placeholder="Write your message..." />
                 <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                <button class="submit" onclick="sentMessage(<?php echo $_SESSION['id'];?>,<?php echo $_GET['id'];?>)"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
             </div>
         </div>
     </div>
+    <?php
+    }
+    ?>
 </div>
 </body>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-    $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+    function scrollToBottom() {
+        $('.messages').scrollTop($('.messages')[0].scrollHeight);
+    }
+    scrollToBottom()
+
+    // $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
     $("#profile-img").click(function() {
         $("#status-options").toggleClass("active");
@@ -854,6 +815,26 @@
         $("#profile").toggleClass("expanded");
         $("#contacts").toggleClass("expanded");
     });
+
+    $("#searchUser").on('keyup', function(e) {
+        console.log($(this).val().trim())
+            var search = $(this).val().trim();
+
+            if (search !== '') {
+                setTimeout(window.location.href = "chat.php?search=" + search, 3000);
+            } else {
+                // handle empty search parameter error
+                setTimeout(window.location.href = "chat.php", 3000);
+                console.log('Empty search parameter');
+            }
+    });
+
+    function openUserChat(id) {
+        console.log(id)
+        window.location.href = "chat.php?id="+id;
+    }
+
+
 
     $("#status-options ul li").click(function() {
         $("#profile-img").removeClass();
@@ -878,24 +859,40 @@
         $("#status-options").removeClass("active");
     });
 
-    function newMessage() {
+    function sentMessage(user_id,to_user) {
         message = $(".message-input input").val();
         if($.trim(message) == '') {
             return false;
         }
-        $('<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
-        $('.message-input input').val(null);
-        $('.contact.active .preview').html('<span>You: </span>' + message);
-        $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+
+        $.ajax({
+                    url : "send_message.php",
+                    type : "POST",
+                    data:{message:message,user_id:user_id,to_user:to_user},
+                    success : function(data){
+                        if (data == 1){
+                            $('<li class="replies"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>').appendTo($('.messages ul'));
+                            $('.message-input input').val(null);
+                            $('.contact.active .preview').html('<span>You: </span>' + message);
+                            // $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+                            scrollToBottom()
+                        }else{
+                            alert("Something went wrong")
+                        }
+                    }
+                });
+
+
+
     };
 
-    $('.submit').click(function() {
-        newMessage();
-    });
+    // $('.submit').click(function() {
+    //     sentMessage();
+    // });
 
     $(window).on('keydown', function(e) {
         if (e.which == 13) {
-            newMessage();
+            sentMessage();
             return false;
         }
     });

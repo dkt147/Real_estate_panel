@@ -371,7 +371,7 @@ include 'conn.php';
                     <th><?php echo $row['name'];?></th>
                     <td><?php echo $row['email'];?></td>
                     <td><?php echo $row['phone'];?></td>
-                    <td><?php echo $row['amount']."$";?></td>
+                    <td><?php echo "$ ".$row['amount'];?></td>
                 </tr>
                 <?php
             }

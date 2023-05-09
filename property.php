@@ -846,7 +846,10 @@ if(isset($_GET['id'])) {
         <?php
     }
 }else{
-    header("Location:home.php");
+//    header("Location:home.php");
+    ?>
+<script>window.location.replace('home.php')</script>
+    <?php
 }
 
 ?>
