@@ -406,15 +406,16 @@ include 'conn.php';
             <div class="row nav py-5" style="">
                 <nav>
                     <ul>
-                        <li><a href="property.php" >Property Details</a></li>
-                        <li><a href="maintenance.php" style="
+                        <li><a href="property.php"  >Property Details</a></li>
+                        <li><a href="maintenance.php?id=<?php echo $_GET['id'];?>" style="
             color: #4962db;
             border-bottom: 3px solid #4962db;">Maintenance</a></li>
                         <li><a href="contractor.php">Contractor</a></li>
-                        <li><a href="">Leasing</a></li>
-                        <li><a href="">Evication</a></li>
-                        <li><a href="docs.php" >Docs</a></li>
-                        <li><a href="images.php">Images</a></li>
+                        <li><a href="leasing.php?id=<?php echo $_GET['id'];?>">Leasing</a></li>
+                        <li><a href="closing.php?id=<?php echo $_GET['id'];?>">Closing</a></li>
+                        <li><a href="eviction.php?id=<?php echo $_GET['id'];?>">Evication</a></li>
+                        <li><a href="docs.php?id=<?php echo $_GET['id'];?>" >Docs</a></li>
+                        <!--                        <li><a href="images.php">Images</a></li>-->
                         <li><a href="renovation.php">Renovation</a></li>
                         <li><a href="marketing.php">Marketing</a></li>
                     </ul>
@@ -424,7 +425,7 @@ include 'conn.php';
             <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;
     padding-top: 18px;">
                 <div class="col-md-6"><h4 style="margin-top: 5px;font-size: 30px">Maintenance</h4></div>
-                <div class="col-md-6" id="addimgicon" class="addicon" onclick="uploadplaneImage()" ><img src="asset/attachment.png" height="50px"></div>
+                <div class="col-md-6" id="addimgicon" class="addicon" onclick="uploadplaneImage()"  data-toggle="modal" data-target="#exampleModal"><img src="asset/attachment.png" height="50px"></div>
 
 
                 <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
@@ -466,35 +467,38 @@ include 'conn.php';
                         <hr>
                         <?php
 
-//                        $idd = $_GET['id'];
-//                        $queryd = "select * from property_document where p_id = $idd";
-//                        $resultd = mysqli_query($con,$queryd);
-//                        while($rowd = mysqli_fetch_assoc($resultd)){
+                        $idd = $_GET['id'];
+                        $queryd = "select * from maintenance where p_id = $idd";
+                        $resultd = mysqli_query($con,$queryd);
+                        while($rowd = mysqli_fetch_assoc($resultd)){
                             ?>
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="first"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></label>
+                                    <label for="first">
+                                        <a download="<?php echo $rowd['document'];?>" href="<?php echo $rowd['document'];?>">
+                                        <img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></a>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="first" style="margin-top: 20px"> 01</label>
+                                    <label for="first" style="margin-top: 20px"> <?php echo $rowd['number'];?></label>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group" style="margin-top: 20px">
-                                   20-04-2023
+                                    <?php echo $rowd['date'];?>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group" style="margin-top: 20px">
-                                    No.11
+                                    <?php echo $rowd['wo_number'];?>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group" style="margin-top: 20px">
-                                    Yes
+                                    <?php echo $rowd['status'];?>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -504,208 +508,8 @@ include 'conn.php';
                             </div>
                         </div>
                         <hr>
-
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first" style="margin-top: 20px"> 01</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    20-04-2023
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    No.11
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    Yes
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    <button class="btn btn-primary" style="background-color: #337ab7;color: white">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first" style="margin-top: 20px"> 01</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    20-04-2023
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    No.11
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    Yes
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    <button class="btn btn-primary" style="background-color: #337ab7;color: white">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first" style="margin-top: 20px"> 01</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    20-04-2023
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    No.11
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    Yes
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    <button class="btn btn-primary" style="background-color: #337ab7;color: white">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first" style="margin-top: 20px"> 01</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    20-04-2023
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    No.11
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    Yes
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    <button class="btn btn-primary" style="background-color: #337ab7;color: white">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first" style="margin-top: 20px"> 01</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    20-04-2023
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    No.11
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    Yes
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    <button class="btn btn-primary" style="background-color: #337ab7;color: white">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr> <div class="row">
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first"><img src="imgs/pdf.jpeg" class="img-responsive" style="height:40px!important;border-radius: 20px"></label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="first" style="margin-top: 20px"> 01</label>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    20-04-2023
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    No.11
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    Yes
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group" style="margin-top: 20px">
-                                    <button class="btn btn-primary" style="background-color: #337ab7;color: white">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
-
-
 <?php
-//                        }
+                        }
  ?>
 
                         <!--  col-md-6   -->
@@ -714,6 +518,37 @@ include 'conn.php';
             </div>
 
         </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Maintenance</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="_add_maintenance.php" enctype="multipart/form-data">
+                            <input type="hidden" id="p_id"  class="form-control" style="width: 450px" value="<?php echo $_GET['id']?>">
+                            <input type="text" id="number" placeholder="Number" class="form-control" style="width: 450px">
+                            <br>
+                            <input type="text" id="wo_number" placeholder="Wo Number" class="form-control" style="width: 450px">
+                            <br>
+                            <input type="text" id="date" placeholder="Date" class="form-control" style="width: 450px">
+                            <br>
+                            <input type="text" id="status" placeholder="Status" class="form-control" style="width: 450px">
+                            <br>
+                            <input type="file" id="file" class="form-control" style="width: 450px">
+                            <br>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="Add_maintenance">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- owl carousel library-->
@@ -742,25 +577,38 @@ include 'conn.php';
         <script>
             jQuery(document).ready(function($) {
 
-                // $('#add-investor').on('click',function () {
-                //
-                //     var  name = document.getElementById('investor_name').value;
-                //     var  email = document.getElementById('investor_email').value;
-                //
-                //
-                //     //On Load Getting Data
-                //     $.ajax({
-                //         url : "add_investor.php",
-                //         type : "POST",
-                //         data:{id:id,name:name,email:email}
-                //         success : function(data){
-                //             if (data == 1){
-                //                 window.location.replace('property.php?id'+id)
-                //             }
-                //         }
-                //     });
-                //
-                // });
+                $('#Add_maintenance').on('click', function() {
+                    var number = document.getElementById('number').value;
+                    var wo_number = document.getElementById('wo_number').value;
+                    var date = document.getElementById('date').value;
+                    var status = document.getElementById('status').value;
+                    var file = document.getElementById('file').files[0];
+                    var p_id = document.getElementById('p_id').value;
+
+                    console.log(number, wo_number, date, status, file, p_id);
+
+                    var formData = new FormData();
+                    formData.append('number', number);
+                    formData.append('wo_number', wo_number);
+                    formData.append('date', date);
+                    formData.append('status', status);
+                    formData.append('file', file);
+                    formData.append('p_id', p_id);
+
+                    $.ajax({
+                        url: "_add_maintenance.php",
+                        type: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data) {
+                            if (data == 1) {
+                                window.location.replace('maintenance.php?id=' + p_id);
+                            }
+                        }
+                    });
+                });
+
 
                 $('#myCarousel2').owlCarousel({
                     // your options here

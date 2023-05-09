@@ -330,14 +330,14 @@ include 'conn.php';
             <nav>
                 <ul>
                     <li><a href="home.php">Dashboard</a></li>
-                    <li><a href="property.php" style="
+                    <li><a href="home.php" style="
             color: #4962db;
             border-bottom: 3px solid #4962db;">Properties</a></li>
                     <li><a href="">Investors</a></li>
                     <li><a href="">Tenants</a></li>
                     <li><a href="">Suppliers</a></li>
                     <li><a href="">Maintenance</a></li>
-                    <li><a href="">Updates</a></li>
+                    <li><a href="updates.php">Updates</a></li>
                 </ul>
             </nav>
         </div>
@@ -413,9 +413,10 @@ if(isset($_GET['id'])) {
                         <li><a href="maintenance.php?id=<?php echo $_GET['id'];?>">Maintenance</a></li>
                         <li><a href="contractor.php">Contractor</a></li>
                         <li><a href="leasing.php?id=<?php echo $_GET['id'];?>">Leasing</a></li>
+                        <li><a href="closing.php?id=<?php echo $_GET['id'];?>">Closing</a></li>
                         <li><a href="eviction.php?id=<?php echo $_GET['id'];?>">Evication</a></li>
                         <li><a href="docs.php?id=<?php echo $_GET['id'];?>" >Docs</a></li>
-                        <li><a href="images.php">Images</a></li>
+<!--                        <li><a href="images.php">Images</a></li>-->
                         <li><a href="renovation.php">Renovation</a></li>
                         <li><a href="marketing.php">Marketing</a></li>
                     </ul>

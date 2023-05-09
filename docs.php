@@ -406,15 +406,16 @@ include 'conn.php';
             <div class="row nav py-5" style="">
                 <nav>
                     <ul>
-                        <li><a href="property.php" >Property Details</a></li>
-                        <li><a href="">Maintenance</a></li>
+                        <li><a href="property.php"  >Property Details</a></li>
+                        <li><a href="maintenance.php?id=<?php echo $_GET['id'];?>" >Maintenance</a></li>
                         <li><a href="contractor.php">Contractor</a></li>
-                        <li><a href="">Leasing</a></li>
-                        <li><a href="">Evication</a></li>
-                        <li><a href="docs.php" style="
+                        <li><a href="leasing.php?id=<?php echo $_GET['id'];?>" >Leasing</a></li>
+                        <li><a href="closing.php?id=<?php echo $_GET['id'];?>">Closing</a></li>
+                        <li><a href="eviction.php?id=<?php echo $_GET['id'];?>" >Evication</a></li>
+                        <li><a href="docs.php?id=<?php echo $_GET['id'];?>" style="
             color: #4962db;
             border-bottom: 3px solid #4962db;">Docs</a></li>
-                        <li><a href="images.php">Images</a></li>
+                        <!--                        <li><a href="images.php">Images</a></li>-->
                         <li><a href="renovation.php">Renovation</a></li>
                         <li><a href="marketing.php">Marketing</a></li>
                     </ul>

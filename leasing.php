@@ -407,15 +407,16 @@ if(isset($_GET['id'])) {
             <div class="row nav py-5" style="">
                 <nav>
                     <ul>
-                        <li><a href="property.php">Property Details</a></li>
-                        <li><a href="">Maintenance</a></li>
+                        <li><a href="property.php"  >Property Details</a></li>
+                        <li><a href="maintenance.php?id=<?php echo $_GET['id'];?>" >Maintenance</a></li>
                         <li><a href="contractor.php">Contractor</a></li>
                         <li><a href="leasing.php?id=<?php echo $_GET['id'];?>" style="
             color: #4962db;
             border-bottom: 3px solid #4962db;">Leasing</a></li>
-                        <li><a href="eviction.php?id=<?php echo $_GET['id'];?>"   >Evication</a></li>
+                        <li><a href="closing.php?id=<?php echo $_GET['id'];?>">Closing</a></li>
+                        <li><a href="eviction.php?id=<?php echo $_GET['id'];?>">Evication</a></li>
                         <li><a href="docs.php?id=<?php echo $_GET['id'];?>" >Docs</a></li>
-                        <li><a href="images.php">Images</a></li>
+                        <!--                        <li><a href="images.php">Images</a></li>-->
                         <li><a href="renovation.php">Renovation</a></li>
                         <li><a href="marketing.php">Marketing</a></li>
                     </ul>
@@ -425,13 +426,21 @@ if(isset($_GET['id'])) {
             <div class="row" style="padding-left: 80px; padding-right: 80px; background-color: white;
     padding-top: 18px;">
                 <div class="col-md-6"><h4 style="margin-top: 5px;font-size: 30px">Leasing</h4></div>
-                <div class="col-md-6" id="addimgicon" class="addicon" onclick="uploadplaneImage()" ><img src="asset/gallery.png" height="50px"><img src="asset/attachment.png" height="50px"><img src="asset/plus.png" height="50px"></div>
+                <div class="col-md-6" id="addimgicon" class="addicon" onclick="uploadplaneImage()" >
+                    <img src="asset/attachment.png" height="50px">
+                </div>
 
 
                 <hr style="color:grey; opacity: .3; height: 1px; margin-top: 10px;">
+                <?php
 
+                $idd = $_GET['id'];
+                $queryd = "select * from leasing where p_id = $idd";
+                $resultd = mysqli_query($con,$queryd);
+                $rowd = mysqli_fetch_assoc($resultd);
+                ?>
                 <div class="container">
-                    <form action="_update_property.php" method="POST" enctype="multipart/form-data">
+                    <form action="_add_leasing.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
@@ -442,8 +451,8 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="radio" name="contact-preference" id="contact-preference" checked  value="am"  style="width: 104px;height: 20px;" ><label>Yes</label>
-                                    <input type="radio" name="contact-preference" id="contact-preference" value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+                                    <input type="radio" name="is_ready_for_rent_1" id="contact-preference11" <?php echo $rowd['is_ready_for_rent'] == 1 ? "checked" : "";?>   value="1"  style="width: 104px;height: 20px;" ><label>Yes</label>
+                                    <input type="radio" name="is_ready_for_rent_1" id="contact-preference12" <?php echo $rowd['is_ready_for_rent'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
 
                                 </div>
                             </div>
@@ -458,7 +467,7 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="08/04/2023" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="start_date" value="<?php echo $rowd['start_date'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
 
                                 </div>
                             </div>
@@ -473,7 +482,7 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="08/04/2023" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="move_in_date" value="<?php echo $rowd['move_in_date'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
 
                                 </div>
                             </div>
@@ -488,7 +497,7 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="08/04/2023" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="rent_date" value="<?php echo $rowd['rent_date'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
 
                                 </div>
                             </div>
@@ -503,7 +512,7 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="08/04/2023" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="show_note" value="<?php echo $rowd['show_note'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
 
                                 </div>
                             </div>
@@ -518,7 +527,7 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="Test 1" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="lease" value="<?php echo $rowd['lease'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
                                 </div>
                             </div>
                         </div>
@@ -532,8 +541,8 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="radio" name="contact-preference" id="contact-preference" checked  value="am"  style="width: 104px;height: 20px;"  ><label>Yes</label>
-                                    <input type="radio" name="contact-preference" id="contact-preference"  value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+                                    <input type="radio" name="is_listing_on_facebook_1" id="contact-preference21"  <?php echo $rowd['is_listing_on_facebook'] == 1 ? "checked" : "";?>  value="1"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="is_listing_on_facebook_1" id="contact-preference22"  <?php echo $rowd['is_listing_on_facebook'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
 
                                 </div>
                             </div>
@@ -548,8 +557,8 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="radio" name="contact-preference" id="contact-preference" checked  value="am"  style="width: 104px;height: 20px;"  ><label>Yes</label>
-                                    <input type="radio" name="contact-preference" id="contact-preference"  value="pm" style="width: 104px;height: 20px;"  ><label>No</label>
+                                    <input type="radio" name="is_listing_on_craigslist_1" id="contact-preference31" <?php echo $rowd['is_listing_on_craigslist'] == 1 ? "checked" : "";?>  value="1"  style="width: 104px;height: 20px;"  ><label>Yes</label>
+                                    <input type="radio" name="is_listing_on_craigslist_1" id="contact-preference32" <?php echo $rowd['is_listing_on_craigslist'] == 0 ? "checked" : "";?> value="0" style="width: 104px;height: 20px;"  ><label>No</label>
 
                                 </div>
                             </div>
@@ -564,7 +573,7 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="Demo Note 1" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="application" value="<?php echo $rowd['application'];?>" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
 
                                 </div>
                             </div>
@@ -579,14 +588,30 @@ if(isset($_GET['id'])) {
 
                             <div class="col-md-10">
                                 <div class="form-group" style="margin-bottom: 20px">
-                                    <input type="text" class="form-control" placeholder="" id="year" name="year" value="Demo Note 1" style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="text" class="form-control" placeholder="" id="year" name="note" value="<?php echo $rowd['note'];?>"  style="border-top-color: white;border-left-color: white;border-right-color: white; width: 200px">
+                                    <input type="file" class="form-control" placeholder="" id="file-input" name="file"  style="display: none">
+                                    <input type="hidden" class="form-control" placeholder="" id="file-input" name="p_id" value="<?php echo $_GET['id'];?>">
 
+                                </div><br>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-default" style="background-color:background-color: #286090!important;">Update</button>
                                 </div>
                             </div>
-                        </div>
-                        <!--  col-md-6   -->
-                </div>
 
+                        </div>
+                        <br>
+                        <br>
+                    </form>
+                </div>
+                <?php
+                ?>
 
             </div>
             <br>
